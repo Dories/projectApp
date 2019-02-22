@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="gbk"?>
+<validators>
+
+<!-- 缴费方式-->
+	<field name="payMode">
+		<field-validator type="requiredstring">
+			<message>缴费方式未告知，请告知</message>
+		</field-validator>
+	</field>
+
+<!-- 银行代码 -->
+	<field name="bankCode">
+		<field-validator type="requiredstring">
+			<if><![CDATA["0".equals("${payMode}")]]></if>
+			<message>缴费方式为银行转账时，开户银行需填写，请填写</message>
+		</field-validator>
+	</field>
+	
+	<!-- 银行账号-->
+	<field name="bankAccNo">
+		<field-validator type="requiredstring">
+			<if><![CDATA["0".equals("${payMode}")]]></if>
+			<message>缴费方式为银行转账时，银行账号需填写，请填写</message>
+		</field-validator>
+	</field>
+	
+	<!-- 续期缴费时，是否需要缴费提示 -->
+	<field name="renewRemindFlag">
+		<field-validator type="requiredstring">
+			<if><![CDATA[!"0".equals("${payIntv}")]]></if>
+			<message>交费方式不为趸交，续期缴费提示需录入</message>
+		</field-validator>
+	</field>
+
+	<!-- 续期保险费超过宽限期仍未交付时，是否选择保险费自动垫交 -->
+	<field name="autoPayFlag">
+		<field-validator type="requiredstring">
+			<if><![CDATA[!"0".equals("${payIntv}")]]></if>
+			<message>交费方式不为趸交，自动垫交需录入</message>
+		</field-validator>
+	</field>
+
+</validators>

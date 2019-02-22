@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="gbk"?>
+<validators>
+    <field name="realName" >
+    	<rules>
+    		<rule><![CDATA[realName == null || realName == '']]></rule>
+    		<message><![CDATA[客户姓名未告知，请告知!]]></message>
+    	</rules> 
+        <rules> 
+    		<rule><![CDATA[realName.length < 2 || realName.length > 36]]></rule>
+    		<message><![CDATA[客户姓名只能有2-36个字符，请重新确认!]]></message>
+    	</rules> 
+    	<rules> 
+    		<rule><![CDATA[!/^[a-zA-Z\u4E00-\u9FA5·,\s]+$/gi.test(realName)]]></rule>
+    		<message><![CDATA[客户姓名只能是中文和英文字母，请重新确认!]]></message>
+    	</rules> 
+    </field>
+    <field name="postalZipCode" >
+        <rules>
+    		<rule><![CDATA[postalZipCode == null || postalZipCode == '']]></rule>
+    		<message><![CDATA[投保人通信地址邮编未告知，请告知!]]></message>
+    	</rules>
+        <rules> 
+    		<rule><![CDATA[!/^\d{6}$/.test(postalZipCode)]]></rule>
+    		<message><![CDATA[地址邮编只能为6位数，请重新确认!]]></message>
+    	</rules>
+    </field>
+    <field name="height" >
+    	<rules>
+    		<rule><![CDATA[height < 0 || height > 300]]></rule>
+    		<message><![CDATA[客户身高只能在0-300以内，请重新确认!]]></message>
+    	</rules> 
+    </field>
+    <!-- 身份证号码格式验证  -->
+    <field name="idNo">
+    	<rules>
+    		<rule><![CDATA[!/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X)$)/.test(idNo)]]></rule>
+    		<message><![CDATA[证件号码长度必须为15或18个字符且字母必须为大写!]]></message>
+    	</rules> 
+    </field>
+    <!-- 中国护照号码格式验证  -->
+    <field name="chinesepassport">
+    	<rules>
+    		<rule><![CDATA[!/^[0-9a-zA-Z]{7,10}$/.test(chinesepassport)]]></rule>
+    		<message><![CDATA[护照号码位数必须为7-10个字符，请重新确认!]]></message>
+    	</rules>
+    </field>
+    <!-- 军官证和士兵证号码格式验证  -->
+    <field name="officerpassport">
+    	<rules>   		
+            <rule><![CDATA[!/^[0-9a-zA-Z\u4e00-\u9fa5]{9,18}$/.test(officerpassport)]]></rule>
+            <message><![CDATA[证件号码必须为9-18个字符，请核实!]]></message>
+    	</rules>
+    </field>
+    <!-- 出生证格式验证  -->
+    <field name="born">
+    	<rules>
+    		<rule><![CDATA[!/^[a-zA-Z][0-9a-zA-Z]{7,11}$/.test(born)]]></rule>
+    		<message><![CDATA[证件号码必须字母开头且长度为8-12个字符!]]></message>
+    	</rules>
+    </field>
+
+    <!-- 港澳居民来往内地通行证验证  -->
+    <field name="gobackpass">
+    	<rules>
+    		<rule><![CDATA[!/^[a-zA-Z][0-9a-zA-Z]{8,}$/.test(gobackpass)]]></rule>
+    		<message><![CDATA[证件号码必须字母开头且长度至少为9个字符!]]></message>
+    	</rules>
+    </field>
+
+    <!-- 台湾居民来往大陆通行证  -->
+    <field name="taiwanpass">
+    	<rules>
+    		<rule><![CDATA[!/^[0-9a-zA-Z]{8,10}$/.test(taiwanpass)]]></rule>
+    		<message><![CDATA[证件号码位数必须为8-10个字符!]]></message>
+    	</rules>
+    </field>
+
+    <!-- 外国护照  -->
+    <field name="foreignpassport">
+    	<rules>
+    		<rule><![CDATA[!/^[0-9a-zA-Z]{3,20}$/.test(foreignpassport)]]></rule>
+    		<message><![CDATA[证件号码长度必须为3-20个字符!]]></message>
+    	</rules>
+    </field>
+
+    <!-- 外国人永久居留证  -->
+    <field name="foreignerpermanent">
+        <rules>
+            <rule><![CDATA[!/^[a-zA-Z][0-9a-zA-Z]{14}$/.test(foreignerpermanent)]]></rule>
+            <message><![CDATA[证件号码必须字母开头且长度为15个字符!]]></message>
+        </rules>
+    </field>
+    <!-- 居民户口簿  -->
+    <field name="householdregister">
+        <rules>
+            <rule><![CDATA[!/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X)$)/.test(householdregister)]]></rule>
+            <message><![CDATA[证件号码必须长度必须为15或18个字符且字母为大写!]]></message>
+        </rules> 
+    </field>
+    <!-- 身高校验  -->
+    <field name="personheight">
+    	<rules>
+    		<rule><![CDATA[!(parseInt(personheight)>=0 && parseInt(personheight)<=300 )]]></rule>
+    		<message><![CDATA[身高只能在0-300范围!]]></message>
+    	</rules>
+    </field>
+
+    <!-- 体重校验  -->
+    <field name="personweight">
+    	<rules>
+    		<!--
+    			add by qinl  修改体重正则可以输入小数点2位数。
+    		 <rule><![CDATA[!/^\d+$/.test(personweight)]]></rule> 
+    		 ^\d+(\.\d{2})?$
+    		 -->
+    		<!-- <rule><![CDATA[!/^\d+(\.\d{2})?$/.test(personweight)]]></rule> -->
+            <rule><![CDATA[!/^\d+(\.\d{1})?$/.test(personweight)]]></rule>
+            <message><![CDATA[体重只能为整数或包含一位小数!]]></message>
+    	</rules>
+    </field>
+
+    <!-- 年收入校验  -->
+    <field name="income">
+    	<rules>
+    	    	
+    		<!--
+    			add by qinl sinosoft 修改收入可以输入2位小数
+    		 <rule><![CDATA[!/^\d+$/.test(income)]]></rule> -->
+    		 
+    		<rule><![CDATA[!/^\d+(\.\d{2})?$/.test(income)]]></rule>
+    		<message><![CDATA[收入只能为数字!]]></message>
+    	</rules>
+    </field>
+
+    <!-- 其他收入校验  -->
+    <field name="otherincome">
+    	<rules>
+    		<rule><![CDATA[!/^[a-zA-Z0-9\u4e00-\u9fa5]+$/.test(otherincome)]]></rule>
+    		<message><![CDATA[其它收入不允许输入标点符号!]]></message>
+    	</rules>
+    </field>
+    <!-- 工作单位校验  -->
+    <field name="nowWorkAdress">
+        <rules>
+            <rule><![CDATA[!/^[a-zA-Z0-9\u4e00-\u9fa5]+$/.test(nowWorkAdress)]]></rule>
+            <message><![CDATA[工作单位不允许输入标点符号!]]></message>
+        </rules>
+    </field>
+    <!-- 客户爱好校验  -->
+    <field name="customFaviorat">
+        <rules>
+            <rule><![CDATA[!/^[a-zA-Z0-9\u4e00-\u9fa5]+$/.test(customFaviorat)]]></rule>
+            <message><![CDATA[客户爱好不允许输入标点符号!]]></message>
+        </rules>
+    </field>
+    <!-- 固定电话校验  -->
+    <field name="tel">
+    	<rules>
+    		<rule><![CDATA[!/^\d{3,4}\-/.test(tel)]]></rule>
+    		<message><![CDATA[固话区号部分必须为3 或4 位数字!]]></message>
+    	</rules> 
+        <rules> 
+    		<rule><![CDATA[!/\-(\d{7,8}|\d{10})$/.test(tel)]]></rule>
+    		<message><![CDATA[固话必须为7、8 或10 位数字(不包括区号位数)!]]></message>
+    	</rules>
+        <rules> 
+    		<rule><![CDATA[(/\-\d{10}$/.test(tel) && !/\-(400|800)/.test(tel))]]></rule>
+    		<message><![CDATA[固话位数为10 的，只能以400或800 开头!]]></message>
+    	</rules> 
+    </field>
+
+    <!-- 移动电话校验  -->
+    <field name="phone">
+    	<rules>
+    		<rule><![CDATA[!/^\d{11}$/.test(phone)]]></rule>
+    		<message><![CDATA[手机号码应为11位!]]></message>
+    	</rules> 
+        <rules> 
+    		<rule><![CDATA[!/^(13|14|15|16|17|18|19)\d+/.test(phone)]]></rule>
+    		<message><![CDATA[手机号码必须为13、14、15、16、17、18或19 开头!]]></message>
+    	</rules>
+    </field>
+
+    <!-- QQ校验  -->
+    <field name="QQ">
+    	<rules>
+    		<rule><![CDATA[!/^\d{5,10}$/.test(QQ)]]></rule>
+    		<message><![CDATA[QQ号码不正确!]]></message>
+    	</rules> 
+    </field>
+
+    <!-- 邮箱校验  -->
+    <field name="EMAIL">
+    	<rules>
+    		<rule><![CDATA[!/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(EMAIL)]]></rule>
+    		<message><![CDATA[邮箱不正确!]]></message>
+    	</rules> 
+    </field>
+
+     <!--  证件有效期验证  -->
+     <field name="idEndDate">
+		<rules>
+    		<rule><![CDATA["0" == document.getElementById("idType").value || "1" == document.getElementById("idType").value || "2" == document.getElementById("idType").value || "H" == document.getElementById("idType").value]]></rule>
+    		<message><![CDATA[客户证件有效期未告知，请告知!]]></message>
+    	</rules> 
+    </field>
+
+     <!--  证件有效期验证  -->
+     <field name="idEndDate1">
+        <rules>
+            <rule><![CDATA["居民身份证" == idEndDate1 || "军官证" == idEndDate1 || "中国护照" == idEndDate1 || "外国护照" == idEndDate1 || "港澳居民来往内地通行证" == idEndDate1 || "台湾居民来往大陆通行证" == idEndDate1 || "外国人永久居留证" == idEndDate1]]></rule>
+            <message><![CDATA[客户证件有效期未告知，请告知!]]></message>
+        </rules> 
+    </field>
+     <!-- 生日验证器 -->
+     <field name="birthday">
+     	<rules>
+    		<rule><![CDATA[birthday > new Date().Format("yyyy-MM-dd hh:mm:ss")]]></rule>
+    		<message><![CDATA[客户出生日期不能早于当前日期，请重新确认!]]></message>
+    	</rules>  
+    </field>
+    
+      <field name="occupationCode" >
+      	<rules>
+    		<rule><![CDATA["0" ==  document.getElementById("sex").value && occupationCode.indexOf('8010104') != -1 ]]></rule>
+    		<message><![CDATA[客户为男性时，不允许选择职业为家庭主妇!]]></message>
+    	</rules>
+    	<rules>
+    		<rule><![CDATA[document.getElementById("age").value >= 18 && occupationCode.indexOf('8010103') != -1 ]]></rule>
+    		<message><![CDATA[客户大于18周岁，不允许选择职业为学龄前儿童!]]></message>
+    	</rules>
+    	<rules>
+    		<rule><![CDATA[document.getElementById("age").value <=3 && occupationCode.indexOf('8010103') != -1 ]]></rule>
+    		<message><![CDATA[客户小于3周岁，职业应为学龄前儿童!]]></message>
+    	</rules>
+    	<rules>
+    		<rule><![CDATA[document.getElementById("sex").value == 1 && document.getElementById("age").value <= 15 && occupationCode.indexOf('8010104') != -1]]></rule>
+    		<message><![CDATA[客户为女性时年龄小于等于15周岁，不允许选择职业为家庭主妇!]]></message>
+    	</rules> 
+    </field> 
+    
+</validators>

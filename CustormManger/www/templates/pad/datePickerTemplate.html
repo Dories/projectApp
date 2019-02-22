@@ -1,0 +1,28 @@
+<div class="row noPadding item-margin-bottom-15px responsive-sm relative">
+	<span class="mustNeedIcon ion-asterisk"
+		  ng-class="{'mustNeedIconShow':childScopeMustNeedData.indexOf('BIRTHDAY') != -1,'IconTop25':!childScopeIsPad,'IconTop50':childScopeIsPad}">
+	</span>	
+	<span ng-show="!edit" class="mustNeedIcon ion-asterisk mustNeedIconShow" ng-class="{'IconTop25':!childScopeIsPad,'IconTop50':childScopeIsPad}">
+	</span>
+	<div class="col col-50 noPadding clickbtn">
+		<div class="my-text-input hasRightIcon">
+			<input ng-model="childScopeBirthday" type="text" placeholder="出生日期">
+			<div class="hide-div"></div>
+			<a class="my-calendar"></a>
+		</div>
+	</div>
+
+	<div class="col col-10 noPadding relative" 
+		 ng-class="{'margin-left-10px':childScopeIsPad,'nomargin':!childScopeIsPad}" 
+		 style="height:42px;">
+		<div class="age-style">
+			<span>{{childScopeAge | age}}</span>
+		</div>
+	</div>
+
+	<div class="col col-30 noPadding"
+		 ng-class="{'margin-left-10px':childScopeIsPad,'nomargin':!childScopeIsPad}">
+		<p class="error-font" ng-class="{'my\-show':!childScopeAgePass}">出生日期不合法!</p>
+	</div>
+
+</div>

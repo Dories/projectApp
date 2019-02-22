@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="GBK"?>
+<validators>
+    <!--countryoption 区县的选项  by lishuang 2014-11-20  -->
+    <validator name="countryoption" class="com.minsheng.esales.client.pub.validator.validators.CountryOptionValidator"/>
+    <validator name="required" class="com.minsheng.esales.client.pub.validator.validators.RequiredFieldValidator"/>
+    <validator name="requiredstring" class="com.minsheng.esales.client.pub.validator.validators.RequiredStringValidator"/>
+    <validator name="intrange" class="com.minsheng.esales.client.pub.validator.validators.IntRangeFieldValidator"/>
+    <validator name="doublerange" class="com.minsheng.esales.client.pub.validator.validators.DoubleRangeFieldValidator"/>
+    <validator name="floatrange" class="com.minsheng.esales.client.pub.validator.validators.FloatRangeFieldValidator"/>
+    <validator name="daterange" class="com.minsheng.esales.client.pub.validator.validators.DateRangeFieldValidator"/>
+    <validator name="expression" class="com.minsheng.esales.client.pub.validator.validators.ExpressionValidator"/>
+    <validator name="fieldexpression" class="com.minsheng.esales.client.pub.validator.validators.FieldExpressionValidator"/>
+    <validator name="email" class="com.minsheng.esales.client.pub.validator.validators.EmailValidator"/>
+    <validator name="url" class="com.minsheng.esales.client.pub.validator.validators.URLValidator"/>
+    <validator name="stringlength" class="com.minsheng.esales.client.pub.validator.validators.StringLengthFieldValidator"/>
+    <validator name="regex" class="com.minsheng.esales.client.pub.validator.validators.RegexFieldValidator"/>
+	<validator name="number" class="com.minsheng.esales.client.pub.validator.validators.NumberValidator"/>
+	<validator name="idenddate" class="com.minsheng.esales.client.pub.validator.validators.IDEndDateValidator"/>   
+	<validator name="stringlength" class="com.minsheng.esales.client.pub.validator.validators.StringLengthFieldValidator"/>   
+	<validator name="idcard" class="com.minsheng.esales.client.pub.validator.validators.IDCardNOValidator"/>    
+	<validator name="username" class="com.minsheng.esales.client.pub.validator.validators.UserNameValidator"/>    
+	<validator name="chinese" class="com.minsheng.esales.client.pub.validator.validators.ContainChineseOrEnglishValidator"/> 
+	<validator name="residencebooklet" class="com.minsheng.esales.client.pub.validator.validators.ResidenceBookletValidator"/> 
+	<validator name="bnfresidencebooklet" class="com.minsheng.esales.client.pub.validator.validators.BnfResidenceBookletValidator"/> 
+	<validator name="mobilenumber" class="com.minsheng.esales.client.pub.validator.validators.MobilePhoneNumberValidator"/>    
+	<validator name="nochinese" class="com.minsheng.esales.client.pub.validator.validators.NContainChinese"/> 
+</validators>

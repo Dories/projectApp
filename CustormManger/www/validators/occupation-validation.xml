@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="gbk"?>
+<validators>
+    
+      <field name="occupationCode" >
+        <field-validator type="regex">
+            <if><![CDATA["0".equals("${sex}")]]></if>
+            <regex>^((?!8010104).)*$</regex>
+            <message>客户为男性时，不允许选择职业为家庭主妇</message>
+        </field-validator>
+         <field-validator type="regex">
+            <if><![CDATA[${age}>=18]]></if>
+            <regex>^((?!8010103).)*$</regex>
+            <message>客户大于18周岁，不允许选择职业为学龄前儿童</message>
+        </field-validator>
+        <field-validator type="regex">
+            <if><![CDATA[${age}<=3]]></if>
+            <regex>8010103</regex>
+            <message>客户小于3周岁，职业应为学龄前儿童</message>
+        </field-validator>
+        <field-validator type="regex">
+            <if><![CDATA["1".equals("${sex}")&& ${age}<=15]]></if>
+            <regex>^((?!8010104).)*$</regex>
+            <message>客户为女性时年龄小于等于15周岁，不允许选择职业为家庭主妇</message>
+        </field-validator>
+    </field>
+    
+</validators>

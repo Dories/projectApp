@@ -1,0 +1,115 @@
+.customerdetial {
+	background: #f0f0f0;
+}
+.customerdetial .bar .button.ion-edit.button-icon .icon::before, .bar .button.ion-edit.button-icon::before {
+	font-size: 24px;
+	line-height: 28px;
+}
+.customerdetial .list.card.has-header {
+	margin: 0;
+}
+.customerdetial .head_pic img {
+	width: 74px;
+	height: 74px;
+	border-radius: 74px;
+}
+.customerdetial .head_pic .item {
+	padding-top: 18px;
+}
+.customerdetial .head_pic .item h2 {
+	margin-top: 4px;
+	margin-bottom: 13px;
+	font-size: 16px;
+}
+.customerdetial .head_pic .item span {
+	color: #ccc;
+	font-size: 14px;
+}
+
+
+.customerdetial .item-divider {
+	padding-top: 14px;
+	padding-bottom: 14px;
+	background: #f7f7f7;
+	color: #d14014;
+}
+.customerdetial .item.item-text-wrap {
+	padding: 0;
+}
+.customerdetial .item-text-wrap .row{
+	min-height: 44px;
+	padding-bottom: 0px !important;
+}
+.customerdetial .item.item-text-wrap .row:nth-child(2n+1) {
+	background: #fcfcfc;
+}
+.customerdetial .item.item-text-wrap .col{
+	line-height: 44px;
+}
+/*.customerdetial .item.item-text-wrap .row:nth-child(2n+1) .col {
+	background: green;
+}*/
+.customerdetial .item.item-text-wrap .row p {
+	color: #000;
+	font-size: 14px;
+}
+.customerdetial .item.item-text-wrap .row span {
+	display: inline-block;
+	width: 100px;
+	color: #d0cccb;
+}
+
+/*tab*/
+.my-tab-space-name .tab .button {
+	background: none;
+	color: #ccc;
+	font-size: 16px;
+	border: none;
+}
+.my-tab-space-name .tab .button{
+	border-right: 1px solid #ccc;
+}
+.my-tab-space-name .tab .button:last-child {
+	border:none;
+}
+.my-tab-space-name .tab .button.button-positive{
+	background: none;
+	color: #d14014;
+	font-size: 16px;
+}
+
+/*模态框*/
+.model_operate {
+	width: 130px;
+	height: 130px;
+	background-color: #323a45; 
+}
+.model_operate .arrow_under {
+	display: block;
+	width: 10px;
+	height: 10px;
+	background: #323a45;
+	-webkit-transform: rotate(45deg);
+	transform:rotate(45deg);
+	position: absolute;
+	top: -5px;
+	right: 10%;
+}
+.model_operate .item {
+	height: 42px;
+	line-height: 10px;
+	margin: 0 10px;
+	border: none;
+	border-bottom: 1px dotted #ccc;
+	background: #323a45; 
+	font-size: 12px;
+	color: #fff;
+	padding-left: 30px;
+}
+.model_operate .item .ion-trash-a,.model_operate .item .ion-ios-book,.model_operate .item .ion-toggle-filled {
+	font-size: 24px;
+	left: 0;
+}
+.model_operate .item-icon-left .icon::before,.model_operate .item-icon-right .icon::before {
+	text-align: left;
+}

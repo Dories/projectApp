@@ -1,0 +1,376 @@
+<ion-view title="{{CustomerDetailModule.data.REAL_NAME}}" class="customerdetial my-tab-space-name">
+
+	<ion-nav-buttons side="right">
+		<a class="my-edit-button" ng-click="CustomerDetailModule.fn.goEditPage()"></a>
+		<!--<a class="button button-icon icon ion-more icon-white" ng-click="CustomerDetailModule.fn.openPopoverFn($event)"></a>-->
+		<a class="button button-icon icon icon-white" ng-click="CustomerDetailModule.fn.deleteUsrFn()">删除</a>	
+	</ion-nav-buttons>
+
+  	<div class="list card has-header head_pic">
+  	<!-- (CustomerDetailModule.data.ICON && CustomerDetailModule.connection)?CustomerDetailModule.data.ICON: ng-click="CustomerDetailModule.fn.showActionsheet()" 模拟匡按钮-->
+	    <a class="item item-thumbnail-left" href="javascript:;">
+	      <img ng-src="{{'img/spengler.jpg'}}" >
+	      <h2>{{CustomerDetailModule.data.REAL_NAME | showDefaultData}}</h2>
+	      <span>{{CustomerDetailModule.data.SEX | codeToName : 'sex'}}</span>
+	      <span>{{CustomerDetailModule.data.AGE | ageFilter}}</span>
+	      <span>{{CustomerDetailModule.data.HOME_CITY | showDefaultData}}</span>
+	    </a>
+	</div>
+
+	<div style="width:100%;position:absolute;bottom:86px;" 
+		 ng-class="{'detailContentTopIpad':commonModule.isIos,'detailContentTopNormal':!commonModule.isIos}">
+		<div class="bar tab">
+			<div class="button-bar">
+				<button class="button font_black" ng-class="{ 'button\-positive': CustomerDetailModule.attr.tabIndex == 'basicMsg' }" ng-click="CustomerDetailModule.fn.setPlatformFn('basicMsg')">
+					基本信息
+				</button>
+				<button class="button font_black" ng-class="{ 'button\-positive': CustomerDetailModule.attr.tabIndex == 'relationship' }" ng-click="CustomerDetailModule.fn.setPlatformFn('relationship')">
+					关系信息
+				</button>
+			</div>
+		</div>
+		
+		<ion-content ng-show="CustomerDetailModule.attr.tabIndex == 'basicMsg'">
+			<!--身份信息-->
+			<div class="card" style="margin-top:0px;">
+			  <div class="item item-divider">
+			    身份信息
+			  </div>
+			  <div class="item item-text-wrap">
+			    <div class="row">
+					<div class="col">
+						<!-- <P><span>年龄:</span>{{CustomerDetailModule.data.AGE | showDefaultData : ''}}</P> -->
+						<P><span>年龄:</span>{{CustomerDetailModule.data.AGE | ageFilter}}</P>
+					</div>
+			    </div>
+			    <div class="row">
+			    	<div class="col">
+						<P><span>生日:</span>{{CustomerDetailModule.data.BIRTHDAY | showDefaultData}}</P>
+					</div>
+			    </div>
+			    <div class="row">
+					<div class="col">
+						<P><span>客户类型:</span>
+							{{CustomerDetailModule.data.TYPE | codeToName : 'customertype'}}
+						</P>
+					</div>
+			    </div>
+			    <div class="row">
+			    	<div class="col">
+						<P><span>客户来源:</span>
+							{{CustomerDetailModule.data.SOURCE | codeToName : 'customersource'}}
+						</P>
+					</div>
+			    </div>
+			    <div class="row">
+					<div class="col">
+						<P><span>客户学历:</span>{{CustomerDetailModule.data.EDUCATION | codeToName : 'degree'}}</P>
+					</div>
+			    </div>
+			    <div class="row">
+			    	<div class="col">
+						<P><span>婚姻状况:</span>
+							{{CustomerDetailModule.data.MARRI_STATUS | codeToName : 'marriage'}}
+						</P>
+					</div>
+			    </div>
+			    <div class="row">
+				    <div class="col">
+						<P><span>客户国籍:</span>
+							{{CustomerDetailModule.data.NATIVE_PLACE | codeToName : 'nativeplace'}}
+						</P>
+					</div>
+			    </div>
+			    <div class="row">
+					<div class="col">
+						<P><span>证件类型:</span>{{CustomerDetailModule.data.IDTYPE | codeToName : 'idtype'}}</P>
+					</div>
+			    </div>
+			    <div class="row">
+			    	<div class="col">
+						<P><span>民族:</span>
+							{{CustomerDetailModule.data.NATIONALITY | codeToName : 'nationality'}}
+						</P>
+					</div>
+			    </div>
+			    <div class="row">
+					<div class="col">
+						<P><span>证件号码:</span>{{CustomerDetailModule.data.IDNO | showDefaultData}}</P>
+					</div>
+			    </div>
+			    <div class="row">
+			    	<div class="col">
+						<P><span>证件有效期:</span>{{CustomerDetailModule.data.ID_END_DATE | showDefaultData}}</P>
+					</div>
+			    </div>
+			    <div class="row">
+			     	<div class="col">
+						<!-- <P><span>籍贯地址:</span>{{CustomerDetailModule.data.HOUSEHOLD_ADRESS | showDefaultData}}</P> -->
+						<P><span>户籍地址:</span>{{CustomerDetailModule.data.RGT_PROVINCE | codeToName : 'province'}}&nbsp;&nbsp;{{CustomerDetailModule.data.RGT_CITY | codeToName : 'city'}}</P>
+					</div>
+			    </div>
+
+			    <!--<show-more phone-arr="{{CustomerDetailModule.data.MOBILE}}"></show-more>-->
+				<div class="row">
+				 	<div class="col">
+					<P><span>手机:</span>{{CustomerDetailModule.data.MOBILE | showDefaultData}}</P>
+					</div>
+			    </div>
+
+			    <div class="row">
+			     	<div class="col">
+					<P><span>家庭地址:</span>{{CustomerDetailModule.data.HOME_PROVINCE | showDefaultData}}&nbsp;&nbsp;{{CustomerDetailModule.data.HOME_CITY | showDefaultData}}&nbsp;&nbsp;{{CustomerDetailModule.data.HOME_COUNTY | showDefaultData}}&nbsp;&nbsp;{{CustomerDetailModule.data.HOME_ADDRESS | showDefaultData}}</P>
+					</div>
+			    </div>
+			    <div class="row">
+					<div class="col">
+						<P><span>家庭电话:</span>{{CustomerDetailModule.data.HOME_PHONE | showDefaultData}}</P>
+					</div>
+			    </div>
+			    <div class="row">
+			    	<div class="col">
+						<P><span>家庭地址邮编:</span>{{CustomerDetailModule.data.HOME_ZIP_CODE | showDefaultData}}</P>
+					</div>
+			    </div>
+			    <div class="row">
+			     	<div class="col">
+						<P><span>单位地址:</span>{{CustomerDetailModule.data.COMPANY_PROVINCE | showDefaultData}}&nbsp;&nbsp;{{CustomerDetailModule.data.COMPANY_CITY | showDefaultData}}&nbsp;&nbsp;{{CustomerDetailModule.data.COMPANY_COUNTY | showDefaultData}}&nbsp;&nbsp;{{CustomerDetailModule.data.COMPANY_ADDRESS | showDefaultData}}</P>
+					</div>
+			    </div>
+			    <div class="row">
+					<div class="col">
+						<P><span>单位电话:</span>{{CustomerDetailModule.data.COMPANY_PHONE | showDefaultData}}</P>
+					</div>
+					
+			    </div>
+			    <div class="row">
+			    	<div class="col">
+						<P><span>单位地址邮编:</span>{{CustomerDetailModule.data.COMPANY_ZIP_CODE | showDefaultData}}</P>
+					</div>
+			    </div>
+			  </div>
+			</div>
+			
+			<!--收入信息-->
+			<div class="card">
+			  <div class="item item-divider">
+			    收入信息
+			  </div>
+			  <div class="item item-text-wrap">
+			    <div class="row">
+					<div class="col">
+						<P><span>年收入:</span>{{CustomerDetailModule.data.INCOME | showDefaultData}}</P>
+					</div>
+			    </div>
+			    <div class="row">
+			    	<div class="col">
+						<P><span>收入来源:</span>{{CustomerDetailModule.data.INCOME_WAY | codeToName : 'incomeway'}}</P>
+					</div>
+			    </div>
+			    <div class="row">
+					<div class="col">
+						<P><span>其他收入来源:</span>{{CustomerDetailModule.data.OTHER_INCOME_WAY | showDefaultData}}</P>
+					</div>
+			    </div>
+			    <div class="row">
+			    	<div class="col">
+						<P style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis"><span>职业名称:</span>{{CustomerDetailModule.data.OCCUPATION_CODE_NAME | showDefaultData}}</P>
+					</div>
+			    </div>
+			    <div class="row">
+					<div class="col">
+						<P><span>职业代码:</span>
+							{{CustomerDetailModule.data.OCCUPATION_CODE | showDefaultData}}
+						</P>
+					</div>
+			    </div>
+			    <div class="row">
+			    	<div class="col">
+						<P><span>职业类别:</span>{{CustomerDetailModule.data.OCCUPATION_CODE_TYPE | showDefaultData}}</P>
+					</div>
+			    </div>
+				<!--add by yangjialin-->
+				<div class="row">
+					<div class="col">
+						<P><span>兼职名称:</span>
+							{{CustomerDetailModule.data.PLURALITY_OCCUPATION_CODE_NAME | showDefaultData}}
+						</P>
+					</div>
+			    </div>
+			    <div class="row">
+					<div class="col">
+						<P><span>兼职代码:</span>
+							{{CustomerDetailModule.data.PLURALITY_OCCUPATION_CODE | showDefaultData}}
+						</P>
+					</div>
+			    </div>
+			    <div class="row">
+					<div class="col">
+						<P><span>兼职类别:</span>{{CustomerDetailModule.data.PLURALITY_OCCUPATION_CODE_TYPE | showDefaultData}}</P>
+					</div>
+			    </div>
+				<div class="row">
+					<div class="col">
+						<P><span>工作单位名称:</span>{{CustomerDetailModule.data.WORK_UNIT | showDefaultData}}</P>
+					</div>
+			    </div>
+			  </div>
+			</div>
+
+			<!--其他信息-->
+			<div class="card">
+			  <div class="item item-divider">
+			    其他信息
+			  </div>
+			  <div class="item item-text-wrap">
+			    <div class="row">
+					<div class="col">
+						<P><span>身高:</span>{{CustomerDetailModule.data.HEIGHT | showDefaultData}}</P>
+					</div>
+			    </div>
+			    <div class="row">
+			    	<div class="col">
+						<P><span>体重:</span>{{CustomerDetailModule.data.WEIGHT | showDefaultData}}</P>
+					</div>
+			    </div>
+			    <div class="row">
+					<div class="col">
+						<P><span>爱好:</span>{{CustomerDetailModule.data.HOBBY | showDefaultData}}</P>
+					</div>
+			    </div>
+			    <div class="row">
+			    	<div class="col">
+						<P><span>特殊纪念日:</span>{{CustomerDetailModule.data.ANNIVERSARY | showDefaultData}}</P>
+					</div>
+			    </div>
+			    <div class="row">
+					<div class="col">
+						<P><span>QQ:</span>{{CustomerDetailModule.data.QQ | showDefaultData}}</P>
+					</div>
+					
+			    </div>
+			    <div class="row">
+			    	<div class="col">
+						<P><span>微博:</span>{{CustomerDetailModule.data.WEIBO_NO | showDefaultData}}</P>
+					</div>
+			    </div>
+			    <div class="row">
+					<div class="col">
+						<P><span>E-mail:</span>{{CustomerDetailModule.data.EMAIL | showDefaultData}}</P>
+					</div>
+			    </div>
+			  </div>
+			</div>
+
+			<!--客户倾向选择-->
+			<div class="card">
+			  <div class="item item-divider">
+			    客户倾向选择
+			  </div>
+			  <div class="item item-text-wrap">
+			    <div class="row">
+					<div class="col">
+						<P><span>账户倾向:</span>
+							{{CustomerDetailModule.data.ACCOUNT_TENDENCY | codeToName : 'accounttendency'}}
+						</P>
+					</div>
+			    </div>
+			  </div>
+			</div>
+
+	 	</ion-content>
+
+	 	<ion-content padding="false" ng-show="CustomerDetailModule.attr.tabIndex == 'relationship'">
+			<div ng-show="!CustomerDetailModule.relationList.length">
+				<div class="row">
+					<div class="col">
+						<button class="button button-block button-light font-color-red">
+						  暂无关系信息
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<!--家庭关系人-->
+			<div class="list card" 
+				 style="margin-top:0px;"
+				 ng-repeat="relation in CustomerDetailModule.relationList" 
+				 ng-class="{'border\-red\-1px': CustomerDetailModule.attr.relationIndex == $index}" 
+				 ng-click="CustomerDetailModule.fn.chooseRelationFn($index)">
+				
+			  <div class="item item-divider font-color-red">
+			    <h2>{{relation.relationName}}</h2>
+			  </div>
+
+			  <div class="item item-body noPadding">
+			    <div class="row backgroundGray">
+			    	<div class="col col-20">
+			    		姓名:
+			    	</div>
+			    	<div class="col">
+			    		{{relation.REAL_NAME | showDefaultData}}
+			    	</div>
+			    </div>
+			    <div class="row">
+			    	<div class="col col-20">
+			    		性别:
+			    	</div>
+			    	<div class="col">
+			    		{{relation.SEX | codeToName : 'sex'}}
+			    	</div>
+			    </div>
+			    <div class="row backgroundGray">
+			    	<div class="col col-20">
+			    		出生日期:
+			    	</div>
+			    	<div class="col">
+			    		{{relation.BIRTHDAY | showDefaultData}}
+			    	</div>
+			    </div>
+			    <div class="row">
+			    	<div class="col col-20">
+			    		年龄:
+			    	</div>
+			    	<div class="col">
+			    		{{relation.AGE | ageFilter}}
+			    	</div>
+			    </div>
+			  </div>
+			</div>
+	 	</ion-content>
+	</div>
+	
+	<div class="usrDetailFooterBotton">
+		<!--创建建议书-->
+		<button class="button 
+					   button-block 
+					   button-light 
+					   border-radius 
+					   font-color-red 
+					   border-red"
+			    ng-click="CustomerDetailModule.fn.appJumpFn()">
+		    {{CustomerDetailModule.attr.buttonText}}
+		</button>
+	</div>
+
+</ion-view>
+
+<!--模态框-->
+<script id="my-popover.html" type="text/ng-template">
+  <ion-popover-view class="model_operate">
+    <span class="arrow_under"></span>
+    <ion-content>
+		<div class="list">
+			<a class="item item-icon-left" ng-click="CustomerDetailModule.fn.deleteUsrFn()">
+				<i class="icon ion-trash-a"></i>
+				删除
+			</a>
+
+			<a class="item item-icon-left" href="javascript:;">
+				<i class="icon ion-toggle-filled"></i>
+				其他操作
+			</a>
+		</div>
+    </ion-content>
+  </ion-popover-view>
+</script>

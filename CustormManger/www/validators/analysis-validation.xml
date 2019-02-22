@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="gbk"?>
+<validators>
+    <field name="uName">
+    	<rules>
+    		<rule><![CDATA[uName == null || uName == '']]></rule>
+    		<message><![CDATA[客户姓名必须输入]]></message>
+    	</rules>
+    	<rules>
+    		<rule><![CDATA[uName.length < 2 || uName.length > 36]]></rule>
+    		<message><![CDATA[客户姓名只能有2-36个字符]]></message>
+    	</rules> 
+         <!-- <field-validator type="username">
+            <message>客户姓名有误，请重新确认</message>
+        </field-validator> -->
+    </field>
+</validators>

@@ -1,0 +1,1450 @@
+<ion-view title="编辑客户" class="my-tab-space-name" id="editPage">
+
+	<ion-nav-buttons side="right">
+		<a class="button button-clear button-dark icon-white" ng-click="editUsrModule.fn.submitDataFn()">保存</a>
+	</ion-nav-buttons>
+
+	<div style="width:100%;position:absolute;bottom:0px;" class="has-header">
+		<div class="bar tab">
+			<div class=" button-bar">
+				<button class="button font_black" ng-class="{ 'button\-positive': editUsrModule.attr.tabIndex == 'basicMsg' }" ng-click="editUsrModule.fn.setPlatformFn('basicMsg')">
+					基本信息
+				</button>
+				<button class="button font_black" ng-class="{ 'button\-positive': editUsrModule.attr.tabIndex == 'contact' }" ng-click="editUsrModule.fn.setPlatformFn('contact')">
+					联系方式 
+				</button>
+				<button class="button font_black" ng-class="{ 'button\-positive': editUsrModule.attr.tabIndex == 'relationship' }" ng-click="editUsrModule.fn.setPlatformFn('relationship')">
+					关系信息
+				</button>
+			</div>
+		</div> 
+		<ion-content padding="false" ng-show="editUsrModule.attr.tabIndex == 'basicMsg'" class="normalForm">
+			<form name="basicMsgForm" novalidate>
+				<!--身份信息-->
+				<div class="card" style="margin-top:0px;">
+				  <div class="item item-divider font-color-red">
+				    身份信息
+				  </div>
+
+				  <div class="item item-text-wrap">
+				  	<!--客户姓名-->
+				    <div class="row noPadding item-margin-bottom-15px responsive-sm">
+				    	<span class="mustNeedIcon mustNeedIconAdd ion-asterisk" style="top:4%;"></span>
+						<div class="col col-50 noPadding nomargin">
+							<label class="item item-input my-item-input">
+							  <input type="text"  class="yuebao"
+							  		 ng-model="editUsrModule.data.REAL_NAME" 
+							  		 placeholder="客户姓名" name="onlineGender" ng-blur="editUsrModule.formCheckFn.checkUsrName(editUsrModule.data.REAL_NAME, 'usrNameErrorMsg')">
+							</label>
+						</div>
+						<div class="col noPadding">
+							<p class="error-font usrNameErrorMsg"></p>
+						</div>
+				    </div>
+					
+
+
+				    <!--客户类型-->
+				    <div class="row noPadding item-margin-bottom-15px">
+						<div class="col noPadding nomargin">
+							<div class="list">
+							  <label class="item item-input my-item-select noPadding">
+							    <div class="input-label">
+							      客户类型
+							    </div>
+							    <select ng-model="editUsrModule.data.TYPE" ng-options="type for type in editUsrModule.staticData.ClientType">
+							      <option value="">客户类型</option>
+							    </select>
+							  </label>
+							</div>
+						</div>
+				    </div>
+
+				    <!--客户来源-->
+				    <div class="row noPadding item-margin-bottom-15px">
+						<div class="col noPadding nomargin">
+							<div class="list">
+							  <label class="item item-input my-item-select noPadding">
+							    <div class="input-label">
+							      客户来源
+							    </div>
+							     <select ng-model="editUsrModule.data.SOURCE" ng-options="type for type in editUsrModule.staticData.ClientSource">
+							      <option value="">客户来源</option>
+							    </select>
+							  </label>
+							</div>
+						</div>
+				    </div>
+					
+					<!--客户民族-->
+				    <div class="row noPadding item-margin-bottom-15px">
+				    	<div class="col noPadding nomargin">
+							<div class="list">
+							  <label class="item item-input my-item-select noPadding">
+							    <div class="input-label">
+							      客户民族
+							    </div>
+							    <select ng-model="editUsrModule.data.NATIONALITY" ng-options="type for type in editUsrModule.staticData.ClientNation">
+							      <option value="">民族</option>
+							    </select>
+							  </label>
+							</div>
+						</div>
+				    </div>
+					
+					<!--学历-->
+				    <div class="row noPadding item-margin-bottom-15px">
+				    	<div class="col noPadding nomargin">
+							<div class="list">
+							  <label class="item item-input my-item-select noPadding">
+							    <div class="input-label">
+							      学历
+							    </div>
+							    <select ng-model="editUsrModule.data.EDUCATION" ng-options="type for type in editUsrModule.staticData.EducationBackground">
+							      <option value="">学历</option>
+							    </select>
+							  </label>
+							</div>
+						</div>
+				    </div>
+
+				    <!--国籍-->
+				    <div class="row noPadding item-margin-bottom-15px relative">
+				    	<span class="mustNeedIcon ion-asterisk" 
+				    		  ng-class="{'mustNeedIconShow':editUsrModule.mustNeedData.indexOf('NATIVE_PLACE') != -1}">
+				    	</span>
+						<div class="col noPadding nomargin">
+							<div class="list">
+							  <label class="item item-input my-item-select noPadding">
+							    <div class="input-label">
+							      国籍
+							    </div>
+							    <select ng-model="editUsrModule.data.NATIVE_PLACE" ng-options="type for type in editUsrModule.staticData.Nationality">
+							      <option value="">国籍</option>
+							    </select>
+							  </label>
+							</div>
+						</div>
+				    </div>
+
+					<!--客户地址-->
+				    <div class="row noPadding item-margin-bottom-15px relative">
+				    	<div class="col noPadding nomargin">
+							<div class="list relative">
+								<span class="mustNeedIcon ion-asterisk" 
+						    		  ng-class="{'mustNeedIconShow':editUsrModule.mustNeedData.indexOf('RGT_PROVINCE') != -1}">
+						    	</span>
+								<label class="item item-input my-item-select noPadding overflow-hidden">
+									<div class="input-label">
+									  户籍省
+									</div>
+									<select ng-model="editUsrModule.data.RGT_PROVINCE" ng-options="item for item in editUsrModule.adress.basicAfress.province">
+									  <option value="">户籍省</option>
+									</select>
+								</label>
+							</div>
+						</div>
+				    </div>
+					
+					<!--客户地址-->
+				    <div class="row noPadding item-margin-bottom-15px relative">
+				    	<div class="col noPadding nomargin">
+							<div class="list relative">
+							  <span class="mustNeedIcon ion-asterisk" 
+									  ng-class="{'mustNeedIconShow':editUsrModule.mustNeedData.indexOf('RGT_CITY') != -1}">
+							  </span>
+							  <label class="item item-input my-item-select noPadding overflow-hidden">
+							    <div class="input-label">
+							      户籍市
+							    </div>
+							    <select ng-model="editUsrModule.data.RGT_CITY" ng-options="item for item in editUsrModule.adress.basicAfress.city">
+							      <option value="">户籍市</option>
+							    </select>
+							  </label>
+							</div>
+						</div>
+				    </div>
+					
+					<!--客户地址-->
+				    <div class="row noPadding item-margin-bottom-15px relative" ng-show="false">
+				    	<div class="col noPadding nomargin">
+							<div class="list relative">
+								<span class="mustNeedIcon ion-asterisk" 
+						    		  ng-class="{'mustNeedIconShow':editUsrModule.mustNeedData.indexOf('HOUSEHOLD_COUNTY') != -1}">
+						    	</span>
+								<label class="item item-input my-item-select noPadding overflow-hidden">
+									<div class="input-label">
+									  地区
+									</div>
+									<select ng-model="editUsrModule.data.HOUSEHOLD_COUNTY" ng-options="item for item in editUsrModule.adress.basicAfress.county">
+									  <option value="">区(县)</option>
+									</select>
+								</label>
+							</div>
+						</div>
+				    </div>
+
+					<!--详细地址-->
+					<div class="row noPadding item-margin-bottom-15px relative responsive-sm" ng-show="false">
+						<span class="mustNeedIcon ion-asterisk" 
+				    		  ng-class="{'mustNeedIconShow':editUsrModule.mustNeedData.indexOf('HOUSEHOLD_ADRESS') != -1}">
+				    	</span>
+						<div class="col col-50 noPadding nomargin">
+							<div class="my-text-input">
+								<input type="text"
+									   ng-model="editUsrModule.data.HOUSEHOLD_ADRESS"
+									   ng-blur="editUsrModule.formCheckFn.checkAddress(editUsrModule.data.HOUSEHOLD_ADRESS, 'houseAddressErrorMsg')" 
+									   placeholder="详细地址">
+							</div>
+						</div>
+						<div class="col col-50 noPadding nomargin">
+							<p class="error-font houseAddressErrorMsg">地址输入有误,不允许输入标点符号</p>
+						</div>
+				    </div>
+
+				    <!--证件类型-->
+				    <div class="row noPadding item-margin-bottom-15px relative responsive-sm">
+				    	<span class="mustNeedIcon ion-asterisk" 
+				    		  ng-class="{'mustNeedIconShow':editUsrModule.mustNeedData.indexOf('IDTYPE') != -1}">
+				    	</span>
+						<div class="col col-50 noPadding nomargin">
+							<div class="list">
+							  <label class="item item-input my-item-select noPadding">
+							    <div class="input-label">
+							      证件类型
+							    </div>
+							    <select ng-model="editUsrModule.data.IDTYPE" ng-options="type for type in editUsrModule.staticData.CertificateType" name="onlineGender" onchange="changefn()">
+							      <option value="">证件类型</option>
+							    </select>
+							  </label>
+							</div>
+						</div>
+						<div class="col col-50 noPadding nomargin">
+							<p class="error-font idtypeErrorMsg"></p>
+						</div>
+				    </div>
+
+				    <!--证件号码-->
+				    <div class="row noPadding item-margin-bottom-15px relative responsive-sm">
+				    	<span class="mustNeedIcon ion-asterisk" 
+				    		  ng-class="{'mustNeedIconShow':editUsrModule.mustNeedData.indexOf('IDNO') != -1}">
+				    	</span>
+						<div class="col col-50 noPadding nomargin">
+							<div class="my-text-input" style="position: relative;">
+								<input type="text"
+									   ng-model="editUsrModule.data.IDNO" 
+									   placeholder="证件号码"
+									   ng-blur="editUsrModule.formCheckFn.checkPersonId(editUsrModule.data.IDNO, 'idnoErrorMsg')" id="idNumber" name="onlineGender">
+									   <a class="button  button-icon icon icon ion-ios-camera" ng-click="editUsrModule.fn.openOCR('front')" style="position: absolute;top:-1px;right: 5px;color: #d14014;"></a>
+							</div>
+						</div>
+						<div class="col col-50 noPadding nomargin">
+							<p class="error-font idnoErrorMsg"></p>
+						</div>
+				    </div>
+
+				    <!--出生日期-->
+				    <birthday
+				    	parent-scope-birthay="editUsrModule.data.BIRTHDAY" 
+				    	parent-scope-age="editUsrModule.data.AGE" 
+				    	parent-scope-id="editUsrModule.data.IDNO" 
+				    	parent-scope-id-card-pass-dont-pass="editUsrModule.attr.idCardPassDontPass"
+				    	parent-scope-form-pass="editUsrModule.attr.basicMsgFormPass"
+				    	parent-scope-idcardlongtime="editUsrModule.attr.idCardLongTime"
+				    	parent-scope-mustneeddata="editUsrModule.mustNeedData"
+				    	parent-scope-agepass="editUsrModule.attr.agePass"
+				    	parent-scope-ispad="commonModule.isPad"
+				    	parent-scope-idtype="editUsrModule.data.IDTYPE">
+				    </birthday>
+					
+					<!--证件有效期-->
+				    <div class="row noPadding item-margin-bottom-15px relative responsive-sm">
+				    	<span class="mustNeedIcon ion-asterisk" 
+				    		  ng-class="{'mustNeedIconShow':editUsrModule.mustNeedData.indexOf('ID_END_DATE') != -1}">
+				    	</span>
+						<div class="col col-50 noPadding">
+							<div class="my-text-input" style="position: relative;">
+								<div class="hide-div"></div>
+								<a style="position: absolute;top: -1px;left: 5px;color: #d14014;" class="button  button-icon icon icon ion-ios-camera" ng-click="editUsrModule.fn.openOCR('back')"></a>
+								<input ng-model="editUsrModule.data.ID_END_DATE" 
+								type="text" placeholder="证件有效期" readonly="readonly" style="text-align: center;padding-left: 10px;">
+								<div class="hide-div"></div>
+							    <a style="position: absolute;top: -1px;right: 5px;" class="my-calendar" ng-click="editUsrModule.fn.useDatePluginFn()"></a>
+							</div>
+						</div>
+						<div class="col col-10 noPadding nomargin margin-left-10px">
+							<div class="mycheckbox-box-cardtime">
+								<li class="item my-item-checkbox-cardtime">
+									<label class="my-checkbox-cardtime">
+										<input ng-model="editUsrModule.attr.idCardLongTime" type="checkbox">
+										<div class="my-checkbox-bg-cardtime"></div>
+										<div class="my-checkbox-font-cardtime">长期有效</div>
+									</label>
+								</li>
+							</div>
+						</div>
+						<div class="col col-25 noPadding">
+								<p class="error-font idEndErrorMsg"></p>
+						</div>
+				    </div>
+
+
+					  <!--客户性别-->
+					  <!-- 去掉ng-disabled="true",使性别可更改-wangzj -->
+					  <div class="row noPadding item-margin-bottom-15px responsive-sm" style="position: relative;">
+						  <span class="mustNeedIcon mustNeedIconAdd ion-asterisk" style="left:-10px;"></span>
+						  <div class="col col-25 noPadding nomargin">
+							  <div class="row noPadding nomargin">
+								  <div class="col noPadding nomargin">
+									  <div class="list margin-right-6px">
+										  <label class="item item-radio border-none">
+											  <input type="radio" ng-model="editUsrModule.data.SEX" value="男" name="onlineGender">
+											  <div class="my-item-content border-red-1px">
+												  男
+											  </div>
+										  </label>
+									  </div>
+								  </div>
+								  <div class="col noPadding nomargin">
+									  <div class="list margin-left-6px">
+										  <label class="item item-radio border-none">
+											  <input type="radio" ng-model="editUsrModule.data.SEX" value="女" name="onlineGender">
+											  <div class="my-item-content border-red-1px">
+												  女
+											  </div>
+										  </label>
+									  </div>
+								  </div>
+							  </div>
+						  </div>
+					  </div>
+
+					
+					<!--婚姻状况-->
+				    <div class="row noPadding item-margin-bottom-15px" ng-show="editUsrModule.data.AGE >= 0">
+				    	<div class="col noPadding nomargin">
+							<div class="list relative">
+							  <span class="mustNeedIcon ion-asterisk" 
+									  ng-class="{'mustNeedIconShow':editUsrModule.mustNeedData.indexOf('MARRI_STATUS') != -1}">
+							  </span>
+							  <label class="item item-input my-item-select noPadding">
+							    <div class="input-label">
+							      婚姻状况
+							    </div>
+							    <select ng-model="editUsrModule.data.MARRI_STATUS" ng-options="type for type in editUsrModule.staticData.MARRI_STATUS">
+							      <option value="">婚姻状况</option>
+							    </select>
+							  </label>
+							</div>
+						</div>
+				    </div>
+					
+				  </div>
+				</div>
+				
+				<!--收入信息-->
+				<div class="card">
+				  <div class="item item-divider font-color-red">
+				    收入信息
+				  </div>
+				  <div class="item item-text-wrap">
+				    <div class="row noPadding item-margin-bottom-15px relative responsive-sm">
+				    	<span class="mustNeedIcon ion-asterisk" 
+				    		  ng-class="{'mustNeedIconShow':editUsrModule.mustNeedData.indexOf('INCOME') != -1}">
+				    	</span>
+						<div class="col col-50 noPadding nomargin">
+							<div class="my-text-input hasRightText">
+								<input ng-model="editUsrModule.data.INCOME" 
+									   ng-blur="editUsrModule.formCheckFn.checkCommon(editUsrModule.data.INCOME, 'income', 'incomeErrorMsg')"
+									   type="number" ng-keyup="editUsrModule.fn.checkIncomFn($event)" 
+									   placeholder="年收入">
+								<span style="color: red;">万元</span>
+							</div>
+						</div>
+						<div class="col col-50 noPadding nomargin">
+							<p class="error-font incomeErrorMsg"></p>
+						</div>
+				    </div>
+					<div class="row noPadding item-margin-bottom-15px relative responsive-sm">
+						<span class="mustNeedIcon ion-asterisk" 
+				    		  ng-class="{'mustNeedIconShow':editUsrModule.mustNeedData.indexOf('INCOME_WAY') != -1}">
+				    	</span>
+						<div class="col col-50 noPadding nomargin">
+							<div class="row noPadding">
+								<!--
+								<div class="col nomargin" ng-repeat="ct in editUsrModule.staticData.companyType">
+									<div class="list">
+									  <label class="item item-radio border-none">
+									    <input type="radio" ng-model="editUsrModule.data.INCOME_WAY" value="{{ct}}">
+									    <div class="my-item-content border-red-1px">
+									      {{ct}}
+									    </div>
+									  </label>
+									</div>
+								</div>
+								-->
+								<div class="col nomargin fangwuhack" ng-repeat="item in editUsrModule.staticData.INCOME_WAY">
+									<div class="mycheckbox-box-other">
+										<li class="item my-item-checkbox-other">
+											<label class="my-checkbox-other">
+												<input ng-model="item.checked" type="checkbox">
+												<div class="my-checkbox-bg-other"></div>
+												<div class="my-checkbox-font-other">{{item.type}}</div>
+											</label>
+										</li>
+									</div>
+								</div>
+								<!-- <div class="col nomargin">
+									<div class="mycheckbox-box-other">
+										<li class="item my-item-checkbox-other">
+											<label class="my-checkbox-other">
+												<input ng-model="editUsrModule.attr.incomeOtherWay" type="checkbox">
+												<div class="my-checkbox-bg-other"></div>
+												<div class="my-checkbox-font-other">其他</div>
+											</label>
+										</li>
+									</div>
+								</div> -->
+							</div>
+						</div>
+					</div>
+						<!-- ng-show="editUsrModule.attr.incomeOtherWay" -->
+					<!--其他收入来源-->
+					<div class="row noPadding item-margin-bottom-15px responsive-sm">
+						<div class="col col-50 noPadding nomargin">
+							<div class="my-text-input">
+								<input ng-model="editUsrModule.data.OTHER_INCOME_WAY"
+									   type="text" 
+									   ng-blur="editUsrModule.formCheckFn.checkCommon(editUsrModule.data.OTHER_INCOME_WAY, 'otherincome', 'otherincomeErrorMsg')"
+									   placeholder="其他收入来源">
+							</div>
+						</div>
+						<div class="col col-50 noPadding nomargin">
+							<p class="error-font otherincomeErrorMsg">格式错误，不允许输入标点</p>
+						</div>
+				    </div>
+					
+					<!--选择客户职业-->
+					<div class="row noPadding item-margin-bottom-15px relative">
+						<span class="mustNeedIcon ion-asterisk" 
+				    		  ng-class="{'mustNeedIconShow':editUsrModule.mustNeedData.indexOf('OCCUPATION_CODE') != -1}">
+				    	</span>	
+				    	<span ng-show="!edit" class="mustNeedIcon mustNeedIconShow ion-asterisk"></span>			    	
+						<div class="col col-90 noPadding nomargin">
+							<div class="my-text-input hasRightIcon">
+								<div class="inputTextBox">
+									<div class="placeholder" ng-show="!editUsrModule.attr.occupationSelected">
+										客户职业
+									</div>
+									<div class="occupationLabelBox" ng-show="editUsrModule.attr.occupationSelected">
+										<div><span>{{editUsrModule.data.OCCUPATION_CODE_NAME}}</span></div>
+										<div><span>{{editUsrModule.data.OCCUPATION_CODE}}</span></div>
+										<div><span>{{editUsrModule.data.OCCUPATION_CODE_TYPE}}</span></div>
+									</div>
+								</div>
+								<div class="hide-div"></div>
+								<a class="button 
+										  button-icon 
+										  icon 
+										  ion-ios-search" 
+							       ng-click="editUsrModule.fn.openModal('1')" name="onlineGender">
+							    </a>
+							</div>
+						</div>
+				    </div>
+					 <!-- 客户兼职  add by yangjialin -->
+					   <div class="row noPadding item-margin-bottom-15px">
+							<div class="col col-90 noPadding nomargin">
+								<div class="my-text-input hasRightIcon">
+									<div class="inputTextBox">
+										<div class="placeholder" ng-show="!editUsrModule.attr.pluralityOccupationSelected">客户兼职职业</div>
+										<div class="occupationLabelBox" ng-show="editUsrModule.attr.pluralityOccupationSelected">
+											<div><span>{{editUsrModule.data.PLURALITY_OCCUPATION_CODE_NAME}}</span></div>
+											<div><span>{{editUsrModule.data.PLURALITY_OCCUPATION_CODE}}</span></div>
+											<div><span>{{editUsrModule.data.PLURALITY_OCCUPATION_CODE_TYPE}}</span></div>
+										</div>
+									</div>
+									<div class="hide-div"></div>
+									<a class="button 
+											  button-icon 
+											  icon 
+											  ion-ios-search" 
+								       ng-click="editUsrModule.fn.openModal('2')" name="onlineGender">
+								    </a>
+								</div>
+							</div>
+							  <!--删除兼职 add by lishuang 2016-3-01-->
+							<div class="col col-10 noPadding">
+								<a class="button 
+										  button-icon 
+										  icon 
+										  ion-ios-close-outline" 
+										  style="color:#d14014;" 
+								       ng-click="editUsrModule.fn.deleteModal()">
+								</a>
+							</div>
+					    </div>
+				    <!--输入现工作单位-->
+					<div class="row noPadding item-margin-bottom-15px relative responsive-sm">
+						<span class="mustNeedIcon ion-asterisk" 
+				    		  ng-class="{'mustNeedIconShow':editUsrModule.mustNeedData.indexOf('WORK_UNIT') != -1}">
+				    	</span>
+						<div class="col col-50 noPadding nomargin">
+							<div class="my-text-input">
+								<input ng-model="editUsrModule.data.WORK_UNIT" class="editWorkUnit"
+								       type="text" ng-readonly="editUsrModule.data.OCCUPATION_CODE=='8010104'||editUsrModule.data.OCCUPATION_CODE=='8010102'||editUsrModule.data.OCCUPATION_CODE=='8010101'||editUsrModule.data.OCCUPATION_CODE=='5010101'"
+								       ng-blur="editUsrModule.formCheckFn.checkCommon(editUsrModule.data.WORK_UNIT, 'nowWorkAdress', 'nowWorkErrorMsg')"
+								       placeholder="{{editUsrModule.data.OCCUPATION_CODE=='8010104'||editUsrModule.data.OCCUPATION_CODE=='8010102'||editUsrModule.data.OCCUPATION_CODE=='8010101'||editUsrModule.data.OCCUPATION_CODE=='5010101'?'无':'现工作单位名称'}}">
+							</div>
+						</div>
+						<div class="col col-50 noPadding nomargin">
+							<p class="error-font nowWorkErrorMsg"></p>
+						</div>
+				    </div>
+				  </div>
+				</div>
+				
+				<!--其他信息-->
+				<div class="card">
+				  <div class="item item-divider font-color-red">
+				    其他信息
+				  </div>
+				  <div class="item item-text-wrap">
+
+				  	<!--身高-->
+				  	<div class="row noPadding item-margin-bottom-15px relative responsive-sm">
+				  		<span class="mustNeedIcon ion-asterisk" 
+				    		  ng-class="{'mustNeedIconShow':editUsrModule.mustNeedData.indexOf('HEIGHT') != -1}">
+				    	</span>
+						<div class="col col-50 noPadding nomargin">
+							<div class="my-text-input hasRightText">
+								<input ng-model="editUsrModule.data.HEIGHT"
+									   ng-blur="editUsrModule.formCheckFn.checkCommon(editUsrModule.data.HEIGHT, 'personheight', 'heightErrorMsg');editUsrModule.formCheckFn.checkHeight();"
+									   type="number"
+									   placeholder="身高">
+								<span>CM</span>
+							</div>
+						</div>
+						<div class="col col-50 noPadding nomargin">
+							<p class="error-font heightErrorMsg"></p>
+						</div>
+				    </div>
+
+				    <!--体重-->
+				    <div class="row noPadding item-margin-bottom-15px relative responsive-sm">
+				    	<span class="mustNeedIcon ion-asterisk" 
+				    		  ng-class="{'mustNeedIconShow':editUsrModule.mustNeedData.indexOf('WEIGHT') != -1}">
+				    	</span>
+				    	<div class="col col-50 noPadding nomargin">
+				    		<div class="my-text-input hasRightText">
+								<input ng-model="editUsrModule.data.WEIGHT"
+									   type="number"
+									   ng-blur="editUsrModule.formCheckFn.checkCommon(editUsrModule.data.WEIGHT, 'personweight', 'weightErrorMsg')"
+									   placeholder="体重">
+								<span>KG</span>
+							</div>
+				    	</div>
+				    	<div class="col col-50 noPadding nomargin">
+							<p class="error-font weightErrorMsg"></p>
+						</div>
+				    </div>
+
+				    <!--客户爱好-->
+				    <div class="row noPadding item-margin-bottom-15px responsive-sm">
+						<div class="col col-50 noPadding nomargin">
+							<div class="my-text-input">
+								<input ng-model="editUsrModule.data.HOBBY" 
+									   type="text" 
+									   ng-blur="editUsrModule.formCheckFn.checkCommon(editUsrModule.data.HOBBY, 'customFaviorat', 'customFaviorateErrorMsg')"
+									   placeholder="客户爱好">
+							</div>
+						</div>
+						<div class="col col-50 noPadding nomargin">
+							<p class="error-font customFaviorateErrorMsg"></p>
+						</div>
+				    </div>
+
+				    <!--客户特殊纪念日-->
+				    <div class="row noPadding item-margin-bottom-15px">
+						<div class="col noPadding nomargin" ng-click="editUsrModule.fn.chooseMyDate()">
+							<div class="my-text-input hasRightIcon">
+								<input ng-model="editUsrModule.data.ANNIVERSARY" 
+									   type="text" 
+									   placeholder="客户特殊纪念日">
+								<div class="hide-div"></div>
+								<a class="my-calendar" 
+								   ></a>
+							</div>
+						</div>
+				    </div>
+				  </div>
+				</div>
+
+				<!--客户倾向选择-->
+				<div class="card">
+					<div class="item item-divider font-color-red">
+						客户倾向选择
+					</div>
+					<div class="item item-text-wrap">
+						<div class="col_checkbox_outer noPadding item-margin-bottom-15px">
+							<div class="col_checkbox" ng-repeat="item in editUsrModule.staticData.ACCOUNT_TENDENCY">
+								<div class="mycheckbox-box-other">
+									<li class="item my-item-checkbox-other">
+										<label class="my-checkbox-other">
+											<input ng-model="item.checked" type="checkbox">
+											<div class="my-checkbox-bg-other"></div>
+											<div class="my-checkbox-font-other">{{item.type}}</div>
+										</label>
+									</li>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</form>
+		</ion-content>
+		<ion-content padding="false" ng-show="editUsrModule.attr.tabIndex == 'contact'" class="normalForm">
+			<form name="addressMsgForm" novalidate>
+				<!--现居住地址信息-->
+				<div class="card" style="margin-top:0px;">
+				  <div class="item item-divider font-color-red">
+				    通信地址（收费地址）
+				  </div>
+
+				  <div class="item item-text-wrap">
+
+					<!--通信地址COMPANY
+					ng-options="type for type in editUsrModule.adress.homeAddress.county">这是原来的属性，
+					原来把通讯地址和家庭地址的属性都写反了，现在已更改，备注的COMPANY和homeAddress
+					是原来属性的备份-->
+				    <div class="row noPadding item-margin-bottom-15px">
+				    	<div class="col noPadding nomargin">
+							<div class="list relative">
+								<span class="mustNeedIcon ion-asterisk" 
+						    		  ng-class="{'mustNeedIconShow':editUsrModule.mustNeedData.indexOf('COMPANY_PROVINCE') != -1}">
+						    	</span>
+								<label class="item item-input my-item-select noPadding overflow-hidden">
+									<div class="input-label">
+									  省
+									</div>
+									<select ng-model="editUsrModule.data.COMPANY_PROVINCE" 
+											ng-options="type for type in editUsrModule.adress.companyAddress.province">
+									  <option value="">省</option>
+									</select>
+								</label>
+							</div>
+						</div>
+				    </div>
+					
+					<!--通信地址-->
+				    <div class="row noPadding item-margin-bottom-15px">
+				    	<div class="col noPadding nomargin">
+							<div class="list relative">
+								<span class="mustNeedIcon ion-asterisk" 
+						    		  ng-class="{'mustNeedIconShow':editUsrModule.mustNeedData.indexOf('COMPANY_CITY') != -1}">
+						    	</span>
+								<label class="item item-input my-item-select noPadding overflow-hidden">
+									<div class="input-label">
+									  城市
+									</div>
+									<select ng-model="editUsrModule.data.COMPANY_CITY" 
+											ng-options="type for type in editUsrModule.adress.companyAddress.city">
+									  <option value="">市</option>
+									</select>
+								</label>
+							</div>
+						</div>
+				    </div>
+					
+					<!--通信地址-->
+				    <div class="row noPadding item-margin-bottom-15px">
+				    	<div class="col noPadding nomargin">
+							<div class="list relative">
+								<span class="mustNeedIcon ion-asterisk" 
+						    		  ng-class="{'mustNeedIconShow':editUsrModule.mustNeedData.indexOf('COMPANY_COUNTY') != -1}">
+						    	</span>
+								<label class="item item-input my-item-select noPadding overflow-hidden">
+									<div class="input-label">
+									地区
+									</div>
+									<select ng-model="editUsrModule.data.COMPANY_COUNTY" 
+									    ng-options="type for type in editUsrModule.adress.companyAddress.county">
+									<option value="">区(县)</option>
+									</select>
+								</label>
+							</div>
+						</div>
+				    </div>
+
+				 <!-- 针对山西机构的业务员，增加4级乡 add by renxiaomin 8.11-->
+				<div ng-show="isShow">
+				    <div class="row noPadding item-margin-bottom-15px">
+				    	<div class="col noPadding nomargin">
+							<div class="row noPadding">
+								<div class="col col-70 noPadding-left">
+									<div class="my-text-input">
+										<input type="text" 
+											   ng-model="editUsrModule.data.COMPANY_fourVILLAGE" placeholder="请填写4级地址">
+									</div>
+								</div>
+								<div class="col col-33 noPadding-right">
+									<div class="list">
+									  <label class="item item-input my-item-select-hasInput noPadding">
+									    <div class="input-label">
+									      4级地址
+									    </div>
+									    <select ng-model="editUsrModule.data.COMPANY_fourAreaType">
+									     <option value="">请选择</option>
+									      <option value="乡">乡</option>
+									      <option value="镇">镇</option>
+									      <option value="街道">街道</option>
+									    </select>
+									  </label>
+									</div>
+								</div>										
+							</div>
+						</div>						
+				    </div>
+
+				    <!-- 针对山西机构的业务员，增加5级村 add by renxiaomin 8.11-->
+				    <div class="row noPadding item-margin-bottom-15px">
+						<div class="col noPadding">
+							<div class="row noPadding">
+								<div class="col col-70 noPadding-left">
+									<div class="my-text-input">
+										<input type="text" 
+											   ng-model="editUsrModule.data.COMPANY_fiveVILLAGE" placeholder="请填写5级地址">
+									</div>
+								</div>									
+								<div class="col col-33 noPadding-right">
+									<div class="list">
+									  <label class="item item-input my-item-select-hasInput noPadding">
+									    <div class="input-label">
+									      5级地址
+									    </div>
+										    <select ng-model="editUsrModule.data.COMPANY_fiveAreaType">
+										     <option value="">请选择</option>
+										      <option value="村">村</option>
+										      <option value="单位">单位</option>
+										      <option value="小区名称">小区名称</option>
+										      <option value="门牌号">门牌号</option>
+										    </select>
+									  </label>
+									</div>
+								</div>
+							</div>
+						</div>
+				    </div>
+				    <!-- 以下是针对山西机构的详细地址address，可填可不填 by add renxiaomin 8.14 -->
+				    <div class="row noPadding item-margin-bottom-15px responsive-sm">
+						<div class="col col-50 noPadding nomargin">
+							<div class="my-text-input">
+								<input type="text" 
+									   ng-model="editUsrModule.data.COMPANY_ADDRESS" 
+									   placeholder="详细地址" />
+							</div>
+						</div>
+				    </div>
+				</div> 
+
+				    <!--通讯详细地址-->
+					<div ng-show="!isShow" class="row noPadding item-margin-bottom-15px relative responsive-sm">
+						<span class="mustNeedIcon ion-asterisk" 
+				    		  ng-class="{'mustNeedIconShow':editUsrModule.mustNeedData.indexOf('COMPANY_ADDRESS') != -1}">
+				    	</span>
+						<div class="col col-50 noPadding nomargin">
+							<div class="my-text-input">
+								<input type="text"
+									   ng-model="editUsrModule.data.COMPANY_ADDRESS"
+									   ng-blur="editUsrModule.formCheckFn.checkAddress(editUsrModule.data.COMPANY_ADDRESS, 'companyErrorMsg')" 
+									   placeholder="详细地址">
+							</div>
+						</div>
+						<div class="col col-50 noPadding nomargin">
+							<p class="error-font companyErrorMsg"></p>
+						</div>
+				    </div>
+
+				    <!--通讯电话-->
+					<div class="row noPadding item-margin-bottom-15px relative responsive-sm">
+						<span class="mustNeedIcon ion-asterisk" 
+				    		  ng-class="{'mustNeedIconShow':editUsrModule.mustNeedData.indexOf('COMPANY_PHONE') != -1}">
+				    	</span>
+						<div class="col col-50 noPadding nomargin">
+							<div class="my-text-input">
+								<input type="text" 
+									   ng-model="editUsrModule.data.COMPANY_PHONE" 
+									   ng-blur="editUsrModule.formCheckFn.checkCommon(editUsrModule.data.COMPANY_PHONE, 'tel', 'companytelErrorMsg')"
+									   placeholder="单位电话 (区号)-电话号码">
+							</div>
+						</div>
+						<div class="col col-50 noPadding nomargin">
+							<p class="error-font companytelErrorMsg"></p>
+						</div>
+				    </div>
+
+				    <!--通讯邮编-->
+					<div class="row noPadding item-margin-bottom-15px relative responsive-sm">
+						<span class="mustNeedIcon ion-asterisk"  ng-class="{'mustNeedIconShow':editUsrModule.mustNeedData.indexOf('COMPANY_ZIP_CODE') != -1}">
+						</span>
+						<div class="col col-50 noPadding nomargin">
+							<div class="row noPadding">
+								<div class="col col-60 noPadding-left nomargin">
+									<div class="my-text-input">
+										<input type="tel" 
+											   ng-model="editUsrModule.data.COMPANY_ZIP_CODE" 
+											   ng-blur="editUsrModule.formCheckFn.checkCommon(editUsrModule.data.COMPANY_ZIP_CODE, 'postalZipCode', 'companyPortlErrorMsg')"
+											   placeholder="通讯邮编">
+									</div>
+								</div>
+								<div class="col noPadding-right nomargin">
+									<div class="list">
+									  <label class="item item-radio border-none">
+									    <input type="radio" 
+									    	   ng-model="editUsrModule.attr.mailingAddress" 
+									    	   value="1">
+									    <div class="my-item-content border-red-1px">
+									      选为邮寄地址
+									    </div>
+									  </label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col col-50 noPadding nomargin">
+							<p class="error-font companyPortlErrorMsg"></p>
+						</div>
+				    </div>
+					<div class="row noPadding item-margin-bottom-15px relative responsive-sm">
+						<div class="col col-50 noPadding">
+				    		<div class="list">
+                    		<label class="item item-radio border-none">
+                      		<input type="checkbox" ng-click="editUsrModule.fn.copyAddressFn()">
+                      		<div class="my-item-content checkboxBtn border-red-1px" ng-class="
+                      			{'actived':isAddress}">
+                        		住址信息同通信地址
+                      		</div>
+                    		</label>
+                  		</div>
+				    	</div>
+					</div>
+				  </div>
+				</div>
+				
+				<!--住址地址信息-->
+				<div class="card">
+				  <div class="item item-divider font-color-red">
+				    住址信息
+				  </div>
+				  <div class="item item-text-wrap">
+
+				    <!--住址地址COMPANY
+				    ng-options="type for type in editUsrModule.adress.companyAddress.province">-->
+				    <div class="row noPadding item-margin-bottom-15px">
+				    	<div class="col noPadding nomargin">
+							<div class="list relative">
+								<span class="mustNeedIcon ion-asterisk" 
+						    		  ng-class="{'mustNeedIconShow':editUsrModule.mustNeedData.indexOf('HOME_PROVINCE') != -1}">
+						    	</span>
+							  <label class="item item-input my-item-select noPadding overflow-hidden">
+							    <div class="input-label">
+							      省
+							    </div>
+							    <select ng-model="editUsrModule.data.HOME_PROVINCE" 
+							    	    ng-options="type for type in editUsrModule.adress.homeAddress.province">
+							      <option value="">省</option>
+							    </select>
+							  </label>
+							</div>
+						</div>
+				    </div>
+					
+					<!--住址客户地址-->
+				    <div class="row noPadding item-margin-bottom-15px">
+				    	<div class="col noPadding nomargin">
+							<div class="list relative">
+								<span class="mustNeedIcon ion-asterisk" 
+						    		  ng-class="{'mustNeedIconShow':editUsrModule.mustNeedData.indexOf('HOME_CITY') != -1}">
+						    	</span>
+							  <label class="item item-input my-item-select noPadding overflow-hidden">
+							    <div class="input-label">
+							      城市
+							    </div>
+							    <select ng-model="editUsrModule.data.HOME_CITY" 
+							    		ng-options="type for type in editUsrModule.adress.homeAddress.city">
+							      <option value="">市</option>
+							    </select>
+							  </label>
+							</div>
+						</div>
+				    </div>
+					
+					<!--住址客户地址-->
+				    <div class="row noPadding item-margin-bottom-15px">
+				    	<div class="col noPadding nomargin">
+							<div class="list relative">
+								<span class="mustNeedIcon ion-asterisk" 
+						    		  ng-class="{'mustNeedIconShow':editUsrModule.mustNeedData.indexOf('HOME_COUNTY') != -1}">
+						    	</span>
+							  <label class="item item-input my-item-select noPadding overflow-hidden">
+							    <div class="input-label">
+							      地区
+							    </div>
+							    <select ng-model="editUsrModule.data.HOME_COUNTY" 
+							    		ng-options="type for type in editUsrModule.adress.homeAddress.county">
+							      <option value="">区(县)</option>
+							    </select>
+							  </label>
+							</div>
+						</div>
+				    </div>
+
+				    <!-- 针对山西机构的业务员，增加4，5级乡，村 add by renxiaomin 8.11-->
+					<div ng-show="isShow">
+					    <div class="row noPadding item-margin-bottom-15px">
+					    	<div class="col noPadding nomargin">
+								<div class="row noPadding">
+									<div class="col col-70 noPadding-left">
+										<div class="my-text-input">
+											<input type="text" 
+												   ng-model="editUsrModule.data.HOME_fourVILLAGE" placeholder="请填写4级地址">
+										</div>
+									</div>
+									<div class="col col-33 noPadding-right">
+										<div class="list">
+										  <label class="item item-input my-item-select-hasInput noPadding">
+										    <div class="input-label">
+										      4级地区
+										    </div>
+										    <select ng-model="editUsrModule.data.HOME_fourAreaType">
+										      <option value="">请选择</option>
+										      <option value="乡">乡</option>
+										      <option value="镇">镇</option>
+										      <option value="街道">街道</option>
+										    </select>
+										  </label>
+										</div>
+									</div>										
+								</div>
+							</div>						
+					    </div>
+					     <!-- 针对山西机构的业务员，增加4，5级乡，村 add by renxiaomin 8.11-->
+					    <div class="row noPadding item-margin-bottom-15px">
+							<div class="col noPadding">
+								<div class="row noPadding">
+									<div class="col col-70 noPadding-left">
+										<div class="my-text-input">
+											<input type="text" 
+												   ng-model="editUsrModule.data.HOME_fiveVILLAGE" placeholder="请填写5级地址">
+										</div>
+									</div>									
+									<div class="col col-33 noPadding-right">
+										<div class="list">
+										  <label class="item item-input my-item-select-hasInput noPadding">
+										    <div class="input-label">
+										      5级地区
+										    </div>
+											    <select ng-model="editUsrModule.data.HOME_fiveAreaType">
+											      <option value="">请选择</option>
+											      <option value="村">村</option>
+											      <option value="单位">单位</option>
+											      <option value="小区名称">小区名称</option>
+											      <option value="门牌号">门牌号</option>
+											    </select>
+										  </label>
+										</div>
+									</div>
+								</div>
+							</div>
+					    </div>
+					    <!-- 以下是针对山西机构的详细地址address，可填可不填 by add renxiaomin 8.14 -->
+					    <div class="row noPadding item-margin-bottom-15px responsive-sm">
+							<div class="col col-50 noPadding nomargin">
+								<div class="my-text-input">
+									<input type="text" 
+										   ng-model="editUsrModule.data.HOME_ADDRESS" 		   
+										   placeholder="详细地址">
+								</div>
+							</div>
+					    </div>
+					</div>
+
+				    <!--住址详细地址-->
+					<div ng-show="!isShow" class="row noPadding item-margin-bottom-15px relative responsive-sm">
+						<span class="mustNeedIcon ion-asterisk" 
+				    		  ng-class="{'mustNeedIconShow':editUsrModule.mustNeedData.indexOf('HOME_ADDRESS') != -1}">
+				    	</span>
+						<div class="col col-50 noPadding nomargin">
+							<div class="my-text-input">
+								<input type="text" 
+									   ng-model="editUsrModule.data.HOME_ADDRESS" 
+									   ng-blur="editUsrModule.formCheckFn.checkAddress(editUsrModule.data.HOME_ADDRESS, 'liveAddressErrorMsg')"
+									   placeholder="详细地址">
+							</div>
+						</div>
+						<div class="col col-50 noPadding nomargin">
+							<p class="error-font liveAddressErrorMsg"></p>
+						</div>
+				    </div>
+
+				     <!--住址电话-->
+					<div class="row noPadding item-margin-bottom-15px relative responsive-sm">
+						<span class="mustNeedIcon ion-asterisk" 
+				    		  ng-class="{'mustNeedIconShow':editUsrModule.mustNeedData.indexOf('HOME_PHONE') != -1}">
+				    	</span>
+						<div class="col col-50 noPadding nomargin">
+							<div class="my-text-input">
+								<input type="number" 
+									   ng-model="editUsrModule.data.HOME_PHONE" 
+									   ng-blur="editUsrModule.formCheckFn.checkCommon(editUsrModule.data.HOME_PHONE, 'tel', 'hometelErrorMsg')"
+									   placeholder="家庭电话 (区号)-电话号码">
+							</div>
+						</div>
+						<div class="col col-50 noPadding nomargin">
+							<p class="error-font hometelErrorMsg"></p>
+						</div>
+				    </div>
+
+				    <!--住址邮编-->
+					<div class="row noPadding item-margin-bottom-15px relative responsive-sm">
+						<span class="mustNeedIcon ion-asterisk" 
+				    		  ng-class="{'mustNeedIconShow':editUsrModule.mustNeedData.indexOf('HOME_ZIP_CODE') != -1}">
+				    	</span>
+						<div class="col col-50 noPadding nomargin">
+							<div class="row noPadding">
+								<div class="col col-60 noPadding-left nomargin">
+									<div class="my-text-input">
+										<input type="tel"
+											   ng-model="editUsrModule.data.HOME_ZIP_CODE" 
+											   ng-blur="editUsrModule.formCheckFn.checkCommon(editUsrModule.data.HOME_ZIP_CODE, 'postalZipCode', 'homePortlErrorMsg')"
+											   placeholder="住址邮编">
+
+									</div>
+								</div>
+								<div class="col noPadding-right nomargin">
+									<div class="list">
+									  <label class="item item-radio border-none">
+									    <input type="radio" 
+									    	   ng-model="editUsrModule.attr.mailingAddress" 
+									    	   value="0">
+									    <div class="my-item-content border-red-1px">
+									      选为邮寄地址
+									    </div>
+									  </label>
+									</div>
+								</div>
+								<!-- <div class="col noPadding-right nomargin">
+									<div class="list">
+									  <label class="item item-radio border-none">
+									    <input type="button" ng-click="editUsrModule.fn.copyAddressFn()">
+									    <div class="my-item-content border-red-1px">
+									      同通讯地址
+									    </div>
+									  </label>
+									</div>
+								</div> -->
+							</div>
+							
+						</div>
+						<div class="col col-50 noPadding nomargin">
+							<p class="error-font homePortlErrorMsg"></p>
+						</div>
+				    </div>
+				  </div>
+				</div>
+
+				<!--联系电话-->
+				<div class="card">
+				  <div class="item item-divider font-color-red">
+				    移动电话
+				  </div>
+				  <div class="item item-text-wrap">
+				    
+				    <!--移动电话-->
+				    <div style="display:block; margin-bottom:8px;">
+				    	<b style="color:red; font-size:14px;">本联系方式作为您的首选联系方式！</b>
+				    </div>
+					<div class="row noPadding item-margin-bottom-15px relative responsive-sm">
+						<span class="mustNeedIcon ion-asterisk" 
+				    		  ng-class="{'mustNeedIconShow':editUsrModule.mustNeedData.indexOf('MOBILE') != -1}">
+				    	</span>
+				    	<span ng-show="!edit" class="mustNeedIcon mustNeedIconShow ion-asterisk">
+				    	</span>					    
+						<div class="col col-50 noPadding nomargin">
+							<div class="my-text-input">
+								<input type="tel" class="yuebao"
+									   ng-model="editUsrModule.data.MOBILE" 
+									   ng-blur="editUsrModule.formCheckFn.checkCommon(editUsrModule.data.MOBILE, 'phone', 'phoneErrorMsg')"
+									   placeholder="手机号码" maxlength="11">
+							</div>
+						</div>
+						<div class="col col-50 noPadding nomargin">
+							<p class="error-font phoneErrorMsg">电话号码格式错误</p>
+						</div>
+				    </div>
+
+				  </div>
+				</div>
+
+				<!--其他-->
+				<div class="card">
+				  <div class="item item-divider font-color-red">
+				    其他
+				  </div>
+				  <div class="item item-text-wrap">
+
+				    <div class="row noPadding item-margin-bottom-15px" 
+				    	 ng-repeat="method in editUsrModule.attr.otherContactMethod">
+						<div class="col col-90 noPadding">
+							<div class="row noPadding">
+								<div class="col col-33">{{method.type}}</div>
+								<div class="col">{{method.value}}</div>
+							</div>
+						</div>
+						<div class="col col-10 noPadding relative">
+							<a class="button
+							          button-icon 
+							          icon 
+							          center
+							          ion-ios-minus-outline" 
+							   ng-click="editUsrModule.fn.deleteContact($index)" style="top:11px;"></a>
+						</div>
+				    </div>
+
+				    <!--添加方式-->
+				    <div class="row noPadding item-margin-bottom-15px" ng-show="editUsrModule.attr.showContactSlect">
+						<div class="col col-90 noPadding">
+							<div class="row noPadding">
+								<div class="col col-33">
+									<div class="list">
+									  <label class="item item-input my-item-select-hasInput noPadding">
+									    <div class="input-label">
+									      类型
+									    </div>
+									    <select ng-model="editUsrModule.attr.contactMsg.type" 
+									            ng-options="type for type in editUsrModule.staticData.Number">
+									      <option value="">类型</option>
+									    </select>
+									  </label>
+									</div>
+								</div>								
+								<div class="col col-66">
+									<div class="my-text-input">
+										<input type="text" 
+											   ng-model="editUsrModule.attr.contactMsg.value">
+									</div>
+								</div>
+								<!-- <div class="col col-10 noPadding relative">
+									<a class="button button-icon icon center ion-ios-plus-outline" ng-click="editUsrModule.fn.addContactType(editUsrModule.attr.contactMsg.type, editUsrModule.attr.contactMsg.value)" style="top:26px;"></a>
+								</div> -->
+							</div>
+						</div>
+						<div class="col col-10 noPadding relative">
+							<a class="button button-icon icon center ion-ios-plus-outline" 
+							   ng-click="editUsrModule.fn.addContactType(editUsrModule.attr.contactMsg.type, editUsrModule.attr.contactMsg.value)" style="top:26px;"></a>
+						</div>
+				    </div>
+
+				  </div>
+				</div>
+
+				<!--备注-->
+				<div class="card">
+				  <div class="item item-divider font-color-red">
+				    备注
+				  </div>
+				  <div class="item item-text-wrap">
+					 <label class="item item-input">
+					    <textarea ng-model="editUsrModule.data.REMARKS" placeholder="备注"></textarea>
+					  </label>
+				  </div>
+				</div>
+			</form>
+		</ion-content>
+		<ion-content padding="false" ng-show="editUsrModule.attr.tabIndex == 'relationship'">
+			<div class="padding-bottom-50px">
+				<!--已有家庭关系人-->
+				<div class="list card" style="margin-top:0px;" ng-repeat="relation in editUsrModule.relationList">
+				  <div class="item item-divider font-color-red">
+				    <h2>{{relation.relationName?relation.relationName:relation.relationShipType.CODE_NAME}}</h2>
+				    <!--style="display:inline-block;height:47px;margin:0px;line-height:47px;"-->
+				    <!-- <a class="button button-icon icon ion-trash-a" style="float:right"></a>
+				    <a class="button button-icon icon ion-edit" style="float:right"></a> -->
+				  </div>
+
+				  <div class="item item-body noPadding">
+				    <div class="row backgroundGray">
+				    	<div class="col col-20">
+				    		姓名:
+				    	</div>
+				    	<div class="col">
+				    		{{relation.REAL_NAME}}
+				    	</div>
+				    </div>
+				    <div class="row">
+				    	<div class="col col-20">
+				    		性别:
+				    	</div>
+				    	<div class="col">
+				    		{{relation.SEX | codeToName : 'sex'}}
+				    	</div>
+				    </div>
+				    <div class="row backgroundGray">
+				    	<div class="col col-20">
+				    		出生日期:
+				    	</div>
+				    	<div class="col">
+				    		{{relation.BIRTHDAY | showDefaultData}}
+				    	</div>
+				    </div>
+				    <div class="row">
+				    	<div class="col col-20">
+				    		年龄:
+				    	</div>
+				    	<div class="col">
+				    		{{relation.AGE | ageFilter}}
+				    	</div>
+				    </div>
+				  </div>
+				</div>
+				
+				<!--添加新关系按钮-->
+				<div ng-show="!editUsrModule.attr.relationForm">
+					<div class="row">
+						<div class="col">
+							<button class="button button-block button-light font-color-red"
+									ng-click="editUsrModule.fn.showAddRelationForm()">
+							  点击添加家属信息
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<!--新建关系人-->
+				<div class="list card" style="margin-top:0px;" ng-show="editUsrModule.attr.relationForm">
+
+				  	<div class="item item-divider font-color-red">
+				    	<h2>添加家属信息</h2>
+				  	</div>
+
+				  	<div class="item item-body">
+					  	<form name="relationForm" class="addRelationForm" novalidate>
+					  		<!--与本人关系-->
+						    <div class="row backgroundGray noPadding item-margin-bottom-15px responsive-sm">
+						    	<div class="col col-50 noPadding nomargin">
+						    		<div class="list">
+									  <label class="item item-input my-item-select noPadding">
+									    <div class="input-label">
+									      与本人关系
+									    </div>
+									    <select ng-model="editUsrModule.attr.relationShipDataCache.relationShipType" 
+										    	ng-options="type.CODE_NAME for type in editUsrModule.staticData.Relationship"
+										    	ng-change="editUsrModule.fn.selectRelationFn()"
+										    	ng-click="editUsrModule.fn.clickRelationFn()">
+									    	<option value="">选择关系</option>
+									    </select>
+									  </label>
+									</div>
+						    	</div>
+						    	<div class="col col-25 noPadding nomargin">
+						    		<p class="error-font relationTypeErrorMsg"></p>
+						    	</div>
+						    </div>
+
+						    <div class="row noPadding item-margin-bottom-15px responsive-sm">
+						    	<div class="col col-50 noPadding nomargin">
+						    		<div class="row noPadding nomargin">
+						    			<div class="col col-50 noPadding nomargin">
+						    				<div class="row noPadding nomargin">
+						    					<div class="col noPadding nomargin">
+						    						<div class="list" style="margin-right:5px;">
+													  <label class="item item-radio border-none">
+													    <input type="radio" 
+													    	   value="男" 
+													    	   ng-model="editUsrModule.attr.relationShipDataCache.SEX">
+													    <div class="my-item-content border-red-1px">
+													      男
+													    </div>
+													  </label>
+													</div>
+						    					</div>
+						    					<div class="col noPadding nomargin">
+						    						<div class="list">
+													  <label class="item item-radio border-none">
+													    <input type="radio"
+													    	   ng-model="editUsrModule.attr.relationShipDataCache.SEX"
+													    	   value="女">
+													    <div class="my-item-content border-red-1px">
+													      女
+													    </div>
+													  </label>
+													</div>
+						    					</div>
+						    				</div>
+						    			</div>
+						    		</div>
+						    	</div>
+						    	<div class="col col-50 noPadding nomargin">
+						    		<p class="error-font relationSexErrorMsg"></p>
+						    	</div>
+						    </div>
+
+						    <!--姓名-->
+						    <div class="row noPadding item-margin-bottom-15px responsive-sm">
+								<div class="col col-50 noPadding nomargin">
+									<label class="item item-input my-item-input">
+									  <input type="text"
+									  		 ng-blur="editUsrModule.formCheckFn.checkUsrName(editUsrModule.attr.relationShipDataCache.REAL_NAME, 'relationUsrNameErrorMsg')"
+									  	     ng-model="editUsrModule.attr.relationShipDataCache.REAL_NAME"
+									  	     placeholder="客户姓名">
+									</label>
+								</div>
+								<div class="col col-50 noPadding nomargin">
+						    		<p class="error-font relationUsrNameErrorMsg">输入姓名</p>
+						    	</div>
+						    </div>
+							
+							<!--出生日期-->
+						    <birthday
+						    	parent-scope-birthay="editUsrModule.attr.relationShipDataCache.BIRTHDAY" 
+						    	parent-scope-age="editUsrModule.attr.relationShipDataCache.AGE"
+						    	parent-scope-mustneeddata="[]"
+						    	parent-scope-ispad="commonModule.isPad"
+						    	parent-scope-agepass="editUsrModule.attr.relationAgePass">
+						    </birthday>
+					  	</form>
+				  	</div>
+				</div>
+			</div>	
+		</ion-content>
+
+		<!--提交按钮-->
+		<div style="position:absolute; bottom:0px; width:100%; background:#fff" 
+			 ng-show="editUsrModule.attr.tabIndex == 'relationship' && editUsrModule.attr.relationForm">
+			
+		    <div class="row">
+				<div class="col col-50">
+					<button class="button 
+								   button-block 
+								   button-light 
+								   border-radius 
+								   font-color-red 
+								   border-red"
+							ng-click="editUsrModule.fn.returnRelationForm()">
+						取消
+					</button>
+				</div>
+				<div class="col col-50">
+					<button class="button 
+								   button-block 
+								   button-light 
+								   border-radius 
+								   font-color-red 
+								   border-red" 
+							ng-click="editUsrModule.fn.addRelationShipFn()">
+						确定
+					</button>
+				</div>
+		    </div>
+		</div>
+	</div>
+
+</ion-view>
+
+<script id="professionalModal.html" type="text/ng-template">
+	<div class="modal border-radius">
+		<div class="bar bar-header my-bar-red border-top font-color-white">
+			<a  class="button 
+					  button-clear 
+					  button-dark 
+					  icon-white" 
+			    ng-click="editUsrModule.fn.closeModal()">取消
+			</a>
+		    <h1 class="title">职业代码查询</h1>
+			<a  class="button 
+				  button-clear 
+				  button-dark 
+				  icon-white" 
+				ng-click="editUsrModule.fn.occupationSelect()"
+				>完成
+			</a>
+		</div>
+		<div class="my-content">
+			<div class="row" ng-class="{'padding-top-54px':commonModule.isPad,'padding-top-74px':!commonModule.isPad}">
+				<div class="col">
+					<div class="my-text-input hasRightIcon">
+						<input ng-model="editUsrModule.attr.WORD" 
+							   type="text" 
+							   placeholder="选择客户职业">
+
+						<a class="button 
+								  button-icon 
+								  icon 
+								  ion-ios-search" 
+							ng-click="editUsrModule.fn.searchOccupation()">
+					    </a>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col" ng-click="editUsrModule.fn.checkTheSearch()">
+					<a class="button button-icon icon icon-red" 
+					   ng-class="{'ion\-ios\-checkmark\-outline':!editUsrModule.attr.searchOccupationMacth,'ion\-ios\-checkmark':editUsrModule.attr.searchOccupationMacth}">
+					</a>
+					<span class="reminder-font">全文匹配</span>
+				</div>
+			</div>
+			<div class="serach-box">
+				<div class="table_title row">
+					<div class="col-25 font-color-red">职业代码</div>
+					<div class="col-75 font-color-red">职业名称</div>
+					<!--<div class="col font-color-red">职业类型</div>-->
+				</div>
+				<ion-content>
+					<div class="items_content">
+						<div ng-show="!editUsrModule.searchOccupationModel.length" class="searchEmpty">无搜索结果</div>
+						<div class="table_items row"
+							 ng-repeat="item in editUsrModule.searchOccupationModel">
+				              <div class="col-25">{{item.OCCUPATION_CODE}}</div>
+				              <div class="col-75">{{item.OCCUPATION_NAME}}</div>
+				              <!--<div class="col">{{item.OCCUPATION_TYPE}}</div>-->
+				        </div>
+					</div>
+				</ion-content>
+			</div>
+			
+			<div class="row" ng-show="editUsrModule.searchOccupationModel.length">
+				<div class="col">
+					<button class="button 
+								   nomargin
+								   button-block 
+								   button-light 
+								   border-radius 
+								   font-color-red 
+								   border-red"
+								   ng-disabled="editUsrModule.professionalPage <= 1"
+								   ng-click="editUsrModule.fn.getPreProfessional()">上一页
+					</button>
+				</div>
+				<div style="width:100px; height:57px; position: relative">
+					<p class="pageCount">{{editUsrModule.professionalPage}}/{{editUsrModule.professionalPageTotal}}</p>
+				</div>
+				<div class="col">
+					<button class="button 
+								   nomargin
+								   button-block 
+								   button-light 
+								   border-radius 
+								   font-color-red 
+								   border-red"
+								   ng-disabled="editUsrModule.professionalPage == editUsrModule.professionalPageTotal"
+								   ng-click="editUsrModule.fn.getNextProfessional()">下一页
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+
+

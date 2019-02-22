@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="gbk"?>
+<validators>
+
+    <field name="realName" >
+
+        <field-validator type="requiredstring" >
+            <message>投保人姓名未告知，请告知</message>
+        </field-validator>
+
+     <field-validator type="stringlength" >
+            <message >
+                                    投保人姓名只能有2-36个字符，请重新确认
+            </message>
+            <min>2</min>
+            <max>36</max>
+        </field-validator>
+        <field-validator type="username" >
+            <message>投保人姓名只能是中文和英文字母，请重新确认</message>
+        </field-validator>
+    </field>
+    <field name="occupationCode" >
+        <field-validator type="requiredstring" >
+            <message>投保人职业编码未告知，请告知</message>
+        </field-validator>
+    </field>
+        <field name="sex" >
+        <field-validator type="requiredstring" >
+            <message>投保人性别未告知，请告知</message>
+        </field-validator>
+    </field>
+      <!-- 生日验证器 -->
+     <field name="birthday">
+        <field-validator type="daterange">
+            <message>投保人出生日期不能早于当前日期，请重新确认</message>
+            <max>${sysdate}</max>
+        </field-validator>
+    </field>
+    
+     <!-- 证件类型 -->
+		
+		<field name="idType">
+			<field-validator type="requiredstring">
+				<message>投保人证件类型未告知，请告知</message>
+			</field-validator>
+		</field>
+    
+       <!-- 证件号码格式验证 -->
+    <field name="idNo">
+        <field-validator type="requiredstring">
+            <message>
+                投保人证件号码未告知，请告知
+                </message>
+        </field-validator>
+        <field-validator type="regex">
+            <if><![CDATA["7".equals("${idType}")]]></if>
+            <regex>^[a-zA-Z].*\d$</regex>
+            <message>balabalabab</message>
+        </field-validator>
+      <!--   <field-validator type="stringlength" >
+            <if><![CDATA["0".equals("${idType}")]]></if>
+            <message >投保人身份证号码输入位数有误，请重新确认</message>
+            <min>18</min>
+            <max>18</max>
+        </field-validator> -->
+        
+    </field>
+    
+    <!-- 证件号码格式验证 -->
+    <field name="idNo">
+        <field-validator type="nochinese">
+            <message >
+                                    投保人证件号码不能包含汉字！
+            </message>
+        </field-validator> 
+        <field-validator type="idcard">
+            <if><![CDATA["0".equals("${idType}") || "4".equals("${idType}")]]></if>
+            <messagePrefix>投保人</messagePrefix>
+			<sex>${sex}</sex>
+			<birthday>${birthday}</birthday>
+        </field-validator>
+        
+        <field-validator type="stringlength">
+             <if><![CDATA["1".equals("${idType}")]]></if>
+             <message >
+                                    投保人证件类型为1-中国护照，证件号码位数必须为7-10个字符，请核实。
+            </message>
+            <min>7</min>
+            <max>10</max>
+        </field-validator>
+        
+        <field-validator type="stringlength">
+             <if><![CDATA["H".equals("${idType}")]]></if>
+             <message >
+                                    投保人证件类型为H-外国护照，证件号码位数必须为3-20个字符，请核实。
+            </message>
+            <min>3</min>
+            <max>20</max>
+        </field-validator>
+        
+        <field-validator type="stringlength">
+             <if><![CDATA["B" == "${idType}")]]></if>
+             <message >
+                                    投保人证件类型为B-港澳居民来往内地通行证，证件号码位数必须为11个字符，请核实。
+            </message>
+            <min>11</min>
+            <max>11</max>
+        </field-validator>
+        <field-validator type="regex">
+            <if><![CDATA["B".equals("${idType}")]]></if>
+            <regex>^[A-Za-z]\w+$</regex>
+            <message>
+                投保人证件类型为B-港澳居民来往内地通行证，证件号码必须为字母开头，请核实。
+                </message>
+        </field-validator>
+        <field-validator type="stringlength">
+             <if><![CDATA["E".equals("${idType}")]]></if>
+             <message >
+                                    投保人证件类型为E-台湾居民来往大陆通行证，证件号码位数必须为8-10个字符，请核实。
+            </message>
+            <min>8</min>
+            <max>10</max>
+        </field-validator>
+        
+        <field-validator type="stringlength">
+             <if><![CDATA["7".equals("${idType}")]]></if>
+             <message >
+                                   投保人证件类型为7-出生证，证件号码位数必须为8-12个字符，请核实。
+            </message>
+            <min>8</min>
+            <max>12</max>
+        </field-validator>
+        
+        <field-validator type="regex">
+            <if><![CDATA["7".equals("${idType}")]]></if>
+            <regex>^[A-Za-z]\w+$</regex>
+            <message>
+                投保人证件类型为7-出生证，证件号码必须为字母开头，请核实。
+                </message>
+        </field-validator>
+        
+        <field-validator type="stringlength">
+             <if><![CDATA["2".equals("${idType}")]]></if>
+             <message >
+                                   投保人证件类型为2-军官证，证件号码必须为10-18个字符，请核实。
+            </message>
+            <min>10</min>
+            <max>18</max>
+        </field-validator>
+        
+        <field-validator type="stringlength">
+             <if><![CDATA["A".equals("${idType}")]]></if>
+             <message >
+                                   投保人证件类型为A-士兵证，证件号码必须为10-18个字符，请核实。
+            </message>
+            <min>10</min>
+            <max>18</max>
+        </field-validator>
+        <field-validator type="stringlength">
+             <if><![CDATA["I".equals("${idType}")]]></if>
+             <message >
+                    投保人证件类型为I-外国人永久居留证，证件号码必须为15个字符，请核实。
+            </message>
+            <min>15</min>
+            <max>15</max>
+        </field-validator>
+        
+    </field>
+    
+     <!-- 证件有效期验证 -->
+     <field name="idEndDate">
+     	<field-validator type="required">
+            <if><![CDATA["0".equals("${idType}")||"1".equals("${idType}")||"2".equals("${idType}")||"H".equals("${idType}")]]></if>
+            <message>投保人证件有效期未告知，请告知</message>
+        </field-validator>
+        <field-validator type="idenddate">
+            <if><![CDATA["0".equals("${idType}")||"1".equals("${idType}")||"2".equals("${idType}")||"H".equals("${idType}")]]></if>
+            <message>投保人证件有效期输入有误，请重新确认</message>
+            <birthday>${birthday}</birthday>
+        </field-validator>
+    </field>
+    
+     <!--户籍 省-->
+     <field name="rgtProvince">
+     	<field-validator type="required">
+            <if><![CDATA["CHN".equals("${nativePlace}")]]></if>
+            <message>投保人户籍省未告知，请告知</message>
+        </field-validator>
+    </field>
+    
+     <!--户籍 市-->
+    <field name="rgtCity">
+     	<field-validator type="required">
+            <if><![CDATA["CHN".equals("${nativePlace}")]]></if>
+            <message>投保人户籍市未告知，请告知</message>
+        </field-validator>
+    </field>
+    
+     <!-- 投保人通信地址邮编 -->
+      <field name="postalZipCode" >
+           <field-validator type="requiredstring">
+            <message >
+                                    投保人通信地址邮编未告知，请告知
+            </message>
+        </field-validator>
+        <field-validator type="stringlength" >
+            <message >
+                                     投保人通信地址邮编只能为6位数，请重新确认
+            </message>
+            <min>6</min>
+            <max>6</max>
+         </field-validator>
+    </field>
+    
+       <!--投保人住址邮编-->
+     <field name="homeZipCode">
+     	    
+            <field-validator type="requiredstring" >
+                <if><![CDATA[!("".equals("${homeAddress}"))]]></if>
+            	<message >
+                                      投保人住址邮编未告知，请告知
+           	 	</message>
+        	</field-validator>
+     		<field-validator type="stringlength" >
+     		    <if><![CDATA[!("".equals("${homeAddress}"))]]></if>
+            <message >
+                                    投保人住址邮编只能为6位数，请重新确认
+            </message>
+            
+            <min>6</min>
+            <max>6</max>
+        	</field-validator>
+    </field>
+    
+      <!-- 投保人必填校验项 -->
+      <!-- 国籍 -->
+    <field name="nativePlace" >
+        <field-validator type="requiredstring" >
+            <message>投保人国籍未告知，请告知</message>
+        </field-validator>
+    </field>
+    
+      <!-- 投保人必填校验项 -->
+      <!-- 手机座机 -->
+    <field name="mobile" >
+      <field-validator type="required">
+            <if><![CDATA["".equals("${mobile}") && "".equals("${phone}")]]></if>
+            <message>投保人手机，座机未告知，请至少告知一项</message>
+        </field-validator>
+      
+      <field-validator type="mobilenumber">
+            <messagePrefix>投保人</messagePrefix>
+        </field-validator>
+        
+    </field>
+    
+      <!--婚姻状况-->
+     <field name="marriage">
+     	<field-validator type="required">
+            <message>投保人婚姻状况未告知，请告知</message>
+        </field-validator>
+    </field>
+    
+     <!--通信地址-->
+     <field name="postalAddress">
+     	<field-validator type="required">
+            <message>投保人通信地址未告知，请告知</message>
+        </field-validator>
+     	<field-validator type="chinese">
+            <message>投保人通信地址有误，请重新填写</message>
+        </field-validator>
+    </field>
+    <!--通讯地址 省-->
+     <field name="postalProvince">
+     	<field-validator type="required">
+            <if><![CDATA["CHN".equals("${nativePlace}")]]></if>
+            <message>投保人通讯地址省未告知，请告知</message>
+        </field-validator>
+    </field>
+    <!--通讯地址 市-->
+     <field name="postalCity">
+     	<field-validator type="required">
+            <if><![CDATA["CHN".equals("${nativePlace}")]]></if>
+            <message>投保人通讯地址市未告知，请告知</message>
+        </field-validator>
+    </field>
+    <!--通讯地址区县-->
+     <field name="postalCounty">
+         <!--  校验区县内容是否是“请选择...” by lishuang 2014-11-20-->
+        <field-validator type="countryoption">
+       	 <message>投保人通讯地址区县未告知，请告知</message>
+        </field-validator>
+    </field>
+    
+     <!--住地区县 -->
+     <!-- 可不用校验   若校验，则 校验区县内容是否是“请选择...” by lishuang 2014-11-20  -->
+    <!--  <field name="homeCounty">
+        <field-validator type="countryoption">
+       	 <message>投保人住址区县未告知，请告知</message>
+        </field-validator>
+    </field>
+     -->
+      <!--住地-->
+     <field name="homeAddress">
+     	<field-validator type="chinese">
+     	    <if><![CDATA[!"".equals("${homeAddress}") && homeAddress != null]]></if>
+            <message>投保人住址有误，请重新填写</message>
+        </field-validator>
+    </field>
+    
+     <!--年收入-->
+     <field name="income">
+     	<field-validator type="required">
+            <message>投保人年收入未告知，请告知</message>
+        </field-validator>
+    </field>
+    
+     <!--收入来源-->
+     <field name="incomeWay">
+     	<field-validator type="required">
+     	    <if><![CDATA[!"0.0".equals("${newIncome}")]]></if>
+            <message>投保人收入来源未告知，请告知</message>
+        </field-validator>
+    </field>
+    
+      <!--其他收入来源-->
+     <field name="otherIncomeWay">
+     	<field-validator type="required">
+     	    <if><![CDATA["${incomeWay}".endsWith("7")]]></if>
+            <message>投保人收入来源已勾选其他选项，请填写其他选项的具体内容</message>
+        </field-validator>
+    </field>
+    
+     <!--投保人工作单位-->
+       <field name="grpName" >
+        <field-validator type="requiredstring" >
+            <message>投保人工作单位未告知，请告知</message>
+        </field-validator>
+        
+       <field-validator type="chinese">
+            <message>投保人工作单位有误，请重新填写</message>
+        </field-validator>
+    </field>
+</validators>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="gbk"?>
+<validators >
+    <field name="customerName" >
+        <field-validator type="requiredstring" >
+            <message >
+客户姓名必须输入
+            </message>
+        </field-validator>
+          <field-validator type="stringlength" >
+            <message >
+客户姓名只能有1-10个字符
+            </message>
+            <min>1</min>
+            <max>10</max>
+        </field-validator>
+         <field-validator type="phone" >
+            <message >
+	客户电话不符合规则
+            </message>
+            <min>11</min>
+            <max>11</max>
+        </field-validator>
+    </field>
+    <field name="visitStartTime" >
+        <field-validator type="requiredstring" >
+            <message >
+拜访时间必须输入
+            </message>
+        </field-validator>
+    </field>
+
+    <field name="visitContent" >
+
+        <field-validator type="requiredstring" >
+
+            <message >
+拜访内容必须输入
+            </message>
+        </field-validator>
+    </field>
+
+</validators>

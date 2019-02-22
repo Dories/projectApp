@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="gbk"?>
+<validators >
+
+    <field name="startDate" >
+
+        <field-validator type="requiredstring" >
+
+            <message >
+
+日期范围的起始日期必须输入
+            
+            </message>
+        </field-validator>
+    </field>
+
+    <field name="endDate" >
+
+        <field-validator type="requiredstring" >
+
+            <message >
+
+日期范围的结束日期必须输入
+            
+            </message>
+        </field-validator>
+    </field>
+    
+     <!-- 生日验证器 -->
+     <field name="startDate">
+        <field-validator type="daterange">
+            <message>日期范围的开始日期不能早于结束日期</message>
+            <max>${endDate}</max>
+        </field-validator>
+    </field>     
+
+</validators>
